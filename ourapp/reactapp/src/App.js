@@ -5,7 +5,6 @@ import "./App.css";
 import Home from "./pages/Home.js";
 import { UserContext } from "./components/contexts/UserContext";
 
-
 function App() {
   return (
       <Router>

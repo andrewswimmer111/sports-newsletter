@@ -3,13 +3,17 @@ import "./Home.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { UserContext } from "../components/contexts/UserContext";
+import Header from "../components/Header";
 // import bcrypt from 'bcryptjs';
 
 
 
 export default function Home() {
 
+
   return (
+    <div>
+    <Header />
     <main className="main-container">
       {/* <img src={Image}/> */}
       {/* <h1 className="main-title">{question}</h1> */}
@@ -20,6 +24,7 @@ export default function Home() {
         {/* User init */}
       </div>
     </main>
+    </div>
   );
 }
 
