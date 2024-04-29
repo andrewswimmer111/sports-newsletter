@@ -1,0 +1,49 @@
+.q-main-container {
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    font-family: 'Varela Round', sans-serif;
+    justify-content: center;
+  }
+  
+  .main-title {
+    font-family: 'Varela Round', sans-serif;
+    font-size: 40px;
+    text-align: center;
+    margin-top: 80px;
+  }
+  
+  .question-container {
+    margin-top: 20px;
+  }
+  
+  .question-title {
+    font-size: 24px;
+  }
+  
+  .question-text {
+    font-size: 20px;
+    margin-top: 10px;
+  }
+  
+  .response-container {
+    margin-top: 20px;
+    min-width: 75vh;
+  }
+  
+  .response-title {
+    font-size: 18px;
+  }
+
+  .q-response-container{
+    display:flex;
+  }
+
+  .response-button {
+    background-color: var(--rose);
+    margin: 8px;
+  }
+  
+  .response-button:hover {
+    background-color: var(--dark);
+  }
