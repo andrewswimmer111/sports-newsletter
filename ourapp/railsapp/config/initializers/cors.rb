@@ -1,9 +1,10 @@
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
-    allow do
-      origins 'http://localhost:3001', 'https://api.replicate.com' # Replace with your frontend URL or '*' for any origin
-      resource '*',
-        headers: :any,
-        methods: [:get, :post, :put, :patch, :delete, :options, :head],
-        credentials: true
-    end
+  allow do
+    origins 'http://localhost:3001'  # Adjust the port if your frontend runs on a different one
+    resource '/ws',
+             headers: :any,
+             credentials: true,
+             methods: [:get, :post, :options, :delete, :put],
+             expose: ['Authorization']
   end
+end
