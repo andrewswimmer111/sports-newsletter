@@ -15,7 +15,7 @@ export default function Home() {
       {/* <h1 className="main-title">{question}</h1> */}
       <div className="hero-section">
         <h1 className="hero-title">Welcome to the House Course</h1>
-        <p className="hero-subtitle">Find your soulmate today!</p>
+        <p className="hero-subtitle">Time to get to building!</p>
         {/* <button className="cta-button">Sign Up Now</button> */}
         {/* User init */}
       </div>
