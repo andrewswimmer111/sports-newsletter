@@ -6,10 +6,7 @@ import { UserContext } from "../components/contexts/UserContext";
 
 export default function Home() {
   return (
-    <div>
     <main className="main-container">
-      {/* <img src={Image}/> */}
-      {/* <h1 className="main-title">{question}</h1> */}
       <div className="hero-section">
         <h1 className="hero-title">Welcome to the House Course</h1>
         <p className="hero-subtitle">Time to get to building!</p>
@@ -17,7 +14,6 @@ export default function Home() {
         {/* User init */}
       </div>
     </main>
-    </div>
   );
 }
 
