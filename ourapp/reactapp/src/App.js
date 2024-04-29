@@ -12,6 +12,7 @@ import "./App.css";
 import axios from "axios";
 import Chat from "./pages/Chat";
 import CreateProfile from "./pages/CreateProfile";
+import Home from "./pages/Home.js";
 import EditProfile from "./pages/EditProfile";
 import Feedback from "./pages/Feedback";
 import DeleteProfile from "./components/DeleteButton.js";
@@ -41,23 +42,6 @@ function App() {
     return null;
   }
 
-  // useEffect(() => {
-  //   if (location.pathname === '/') {
-  // //     sessionStorage.setItem('user', null);
-  // //     sessionStorage.setItem('uid', null);
-  // //     sessionStorage.setItem('username', null);
-  // //     localStorage.setItem('username', null);
-  // //     localStorage.setItem('uid', null);
-  // //     localStorage.setItem('user', null);
-
-  //     setUser(null)
-
-      
-
-  //   }
-  // }, [location]); 
-
-
   const [user, setUser] = useState(null);
   return (
     <UserContext.Provider value={{ user, setUser }}>
@@ -65,7 +49,7 @@ function App() {
         <ScrollToTop />
 
         <Routes>
-          <Route exact path="/" element={<UserLogin />} />
+          <Route exact path="/" element={<Home />} />
           <Route exact path="/Chat" element={<Chat />} />
           <Route exact path="/CreateProfile" element={<CreateProfile />} />
           <Route exact path="/ViewProfile" element={<ViewProfile />} />
