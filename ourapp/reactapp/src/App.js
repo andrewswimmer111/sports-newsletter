@@ -8,13 +8,11 @@ import { UserContext } from "./components/contexts/UserContext";
 
 function App() {
   return (
-    <UserContext.Provider value={{ user, setUser }}>
       <Router>
         <Routes>
           <Route exact path="/" element={<Home />} />
         </Routes>
       </Router>
-    </UserContext.Provider>
   );
 }
 
