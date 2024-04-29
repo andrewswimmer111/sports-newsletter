@@ -1,7 +1,0 @@
-{
-  "dependencies": {
-    "@types/react-select": "^5.0.1",
-    "react-select": "^5.8.0",
-    "replicate": "^0.22.0"
-  }
-}
