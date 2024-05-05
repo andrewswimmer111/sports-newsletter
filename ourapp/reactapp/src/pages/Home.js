@@ -3,17 +3,17 @@ import "./Home.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { UserContext } from "../components/contexts/UserContext";
+// Be sure to add imports for the components you want to use!
+import TodoList from "../components/ToDo";
 
 export default function Home() {
   return (
-    <main className="main-container">
-      <div className="hero-section">
-        <h1 className="hero-title">Welcome to the House Course</h1>
-        <p className="hero-subtitle">Time to get to building!</p>
-        {/* <button className="cta-button">Sign Up Now</button> */}
-        {/* User init */}
+    <main className="layout-container">
+      <div className="intro-section">
+        <h1 className="intro-title">Welcome to the House Course</h1>
+        <p className="intro-subtitle">Time to get to building!</p>
+        <TodoList />
       </div>
     </main>
   );
 }
-
