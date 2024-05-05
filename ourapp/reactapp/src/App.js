@@ -1,17 +1,18 @@
-import React, { useState, useEffect, useRef, createContext } from "react";
-import { useLocation } from "react-router-dom";
+import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import "./App.css";
-import Home from "./pages/Home.js";
-import { UserContext } from "./components/contexts/UserContext";
+import Home from "./pages/Home";
+import { UserProvider } from "./components/contexts/UserContext";
 
 function App() {
   return (
+    // Wrap the Router in the UserProvider
+    <UserProvider>  
       <Router>
         <Routes>
-          <Route exact path="/" element={<Home />} />
+          <Route path="/" element={<Home />} />
         </Routes>
       </Router>
+    </UserProvider>
   );
 }
 
