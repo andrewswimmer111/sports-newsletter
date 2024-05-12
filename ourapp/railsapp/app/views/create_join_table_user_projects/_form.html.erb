@@ -1,0 +1,27 @@
+<%= form_with(model: create_join_table_user_project) do |form| %>
+  <% if create_join_table_user_project.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(create_join_table_user_project.errors.count, "error") %> prohibited this create_join_table_user_project from being saved:</h2>
+
+      <ul>
+        <% create_join_table_user_project.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :user_id, style: "display: block" %>
+    <%= form.text_field :user_id %>
+  </div>
+
+  <div>
+    <%= form.label :project_id, style: "display: block" %>
+    <%= form.text_field :project_id %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

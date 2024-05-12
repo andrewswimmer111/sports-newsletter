@@ -1,0 +1,1 @@
+json.partial! "create_join_table_user_projects/create_join_table_user_project", create_join_table_user_project: @create_join_table_user_project
