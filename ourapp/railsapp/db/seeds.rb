@@ -15,3 +15,14 @@
 # Status.create!([{ name: 'Active' }, { name: 'Inactive' }])
 
 # Add other necessary seeds below...
+
+
+# Clear the users table before seeding to avoid creating duplicates when you re-seed the database
+User.destroy_all
+
+# Create initial users
+User.create([
+  { name: "Alice Smith", email: "alice@example.com", age: 28 },
+  { name: "Bob Jones", email: "bob@example.com", age: 34 },
+  { name: "Carol White", email: "carol@example.com", age: 22 }
+])

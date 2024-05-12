@@ -3,8 +3,7 @@
 # Any additional code should be placed after this line.
 Rails.application.routes.draw do
   namespace :api do
-    resources :users
-  end
+    end
 end
 
 # !Note from Alex: add this code if you want to work with the Sidekiq Web UI
