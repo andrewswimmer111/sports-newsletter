@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Join table user projects</h1>
+
+<div id="join_table_user_projects">
+  <% @join_table_user_projects.each do |join_table_user_project| %>
+    <%= render join_table_user_project %>
+    <p>
+      <%= link_to "Show this join table user project", join_table_user_project %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New join table user project", new_join_table_user_project_path %>

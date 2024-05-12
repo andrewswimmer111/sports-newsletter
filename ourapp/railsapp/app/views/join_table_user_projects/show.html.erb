@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @join_table_user_project %>
+
+<div>
+  <%= link_to "Edit this join table user project", edit_join_table_user_project_path(@join_table_user_project) %> |
+  <%= link_to "Back to join table user projects", join_table_user_projects_path %>
+
+  <%= button_to "Destroy this join table user project", @join_table_user_project, method: :delete %>
+</div>
