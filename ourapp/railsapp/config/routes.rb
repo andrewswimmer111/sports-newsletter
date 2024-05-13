@@ -2,11 +2,9 @@
 # It marks the end of the block where routes are defined using the `draw` method.
 # Any additional code should be placed after this line.
 Rails.application.routes.draw do
-  namespace :api do
     resources :users do
       resources :posts
     end
-  end
 end
 
 
