@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-
+import './Profiles.css';
 function Profiles() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -35,13 +35,13 @@ function Profiles() {
       });
   }, []);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error}</p>;
+  if (loading) return <p className="loading">Loading...</p>;
+  if (error) return <p className="error">Error: {error}</p>;
 
   return (
-    <div>
+    <div className="Profiles-container">
       {users.map(user => (
-        <div key={user.id}>
+        <div key={user.id} className="user-card">
           <h2>{user.name}</h2>
           <ul>
             {user.posts && user.posts.map(post => (
