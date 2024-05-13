@@ -7,7 +7,7 @@ function Profiles() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('http://localhost:3000/api/users')
+    fetch('http://localhost:3000/users')
       .then(response => {
         if (!response.ok) throw new Error('Failed to fetch');
         return response.json();
@@ -32,9 +32,9 @@ function Profiles() {
         <div key={user.id}>
           <h2>{user.name}</h2>
           <ul>
-            {user.posts.map(post => (
-              <li key={post.id}>{post.title}</li>
-            ))}
+            {/* {user.posts.map(post => ( */}
+              {/* <li key={post.id}>{post.title}</li> */}
+            {/* ))} */}
           </ul>
         </div>
       ))}
