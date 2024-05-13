@@ -1,4 +1,5 @@
 // import React, { useState, useEffect, useContext, createContext } from "react";
+import Profiles from "../components/Profiles";
 import "./Home.css";
 // import axios from "axios";
 // import { Link } from "react-router-dom";
@@ -27,6 +28,7 @@ export default function Home() {
         {/* <CounterEffect /> */}
         {/* <TodoList /> */}
         {/* <UserProfile /> */}
+        <Profiles />
       </div>
     </main>
   );
