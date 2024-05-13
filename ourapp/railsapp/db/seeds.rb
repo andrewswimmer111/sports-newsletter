@@ -1,28 +1,25 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
-# Uncomment and modify the following lines according to your application's need.
-
-# Create default admin user
-# Admin.create!(username: 'admin', email: 'admin@example.com', password: 'securepassword')
-
-# Add initial data for dropdowns or constants
-# Status.create!([{ name: 'Active' }, { name: 'Inactive' }])
-
-# Add other necessary seeds below...
-
-
-# Clear the users table before seeding to avoid creating duplicates when you re-seed the database
+# db/seeds.rb
 User.destroy_all
 
-# Create initial users
-User.create([
-  { name: "Alice Smith", email: "alice@example.com", age: 28 },
-  { name: "Bob Jones", email: "bob@example.com", age: 34 },
-  { name: "Carol White", email: "carol@example.com", age: 22 }
+# Create initial users and their posts
+alice = User.create(name: "Alice Smith", email: "alice@example.com", age: 28)
+bob = User.create(name: "Bob Jones", email: "bob@example.com", age: 34)
+carol = User.create(name: "Carol White", email: "carol@example.com", age: 22)
+
+# Create posts for Alice
+alice.posts.create([
+  { title: "First Post", content: "This is the first post by Alice." },
+  { title: "Second Post", content: "Here's another post by Alice." }
 ])
+
+# Create posts for Bob
+bob.posts.create([
+  { title: "Bob's Adventure", content: "Details about Bob's recent adventure." }
+])
+
+# Create a post for Carol
+carol.posts.create([
+  { title: "Carol's Musings", content: "Carol shares her thoughts on today's tech landscape." }
+])
+
+puts "Users and their posts created!"
