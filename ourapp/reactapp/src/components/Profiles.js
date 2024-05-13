@@ -1,4 +1,3 @@
-// src/components/Users.js
 import React, { useEffect, useState } from 'react';
 
 function Profiles() {
@@ -9,11 +8,24 @@ function Profiles() {
   useEffect(() => {
     fetch('http://localhost:3000/users')
       .then(response => {
-        if (!response.ok) throw new Error('Failed to fetch');
+        if (!response.ok) throw new Error('Failed to fetch users');
         return response.json();
       })
       .then(data => {
-        setUsers(data);
+        const usersWithPostsPromises = data.map(user => {
+          return fetch(`http://localhost:3000/users/${user.id}/posts`)
+            .then(response => {
+              if (!response.ok) throw new Error('Failed to fetch posts');
+              return response.json();
+            })
+            .then(posts => {
+              return { ...user, posts }; // Append posts to each user
+            });
+        });
+        return Promise.all(usersWithPostsPromises); // Resolve all promises
+      })
+      .then(usersWithPosts => {
+        setUsers(usersWithPosts);
         setLoading(false);
       })
       .catch(err => {
@@ -32,14 +44,13 @@ function Profiles() {
         <div key={user.id}>
           <h2>{user.name}</h2>
           <ul>
-            {/* {user.posts.map(post => ( */}
-              {/* <li key={post.id}>{post.title}</li> */}
-            {/* ))} */}
+            {user.posts && user.posts.map(post => (
+              <li key={post.id}>{post.title}</li>
+            ))}
           </ul>
         </div>
       ))}
     </div>
   );
 }
-
 export default Profiles;
