@@ -1,4 +1,3 @@
-markdownCopy code
 # Project Name: Pirated Movie Scraper
 
 ## Introduction
