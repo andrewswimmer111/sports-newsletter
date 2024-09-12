@@ -22,6 +22,7 @@ export default function Home() {
       <div className="intro-section">
         <h1 className="intro-title">Welcome to the House Course</h1>
         <p className="intro-subtitle">Time to get to building!</p>
+        <p>hey!</p>
 
         {/* <CounterState /> */}
         {/* <CounterEffect /> */}
