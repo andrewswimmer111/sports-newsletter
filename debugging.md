@@ -24,3 +24,24 @@ cd ourapp
 docker compose build
 docker compose up
 ```
+
+### Error with `docker-entrypoint-rails.sh`: Not Found in PATH
+
+**Error Message:**
+```
+/usr/bin/env: ‘docker-entrypoint-rails.sh’: No such file or directory
+```
+
+**Resolution:**
+Open `docker-entrypoint-rails.sh` and change the line endings from **CRLF to LF**.
+
+This error often occurs when the script has Windows-style line endings (`CRLF`) but is being run in a Unix-like environment that expects Unix-style line endings (`LF`). Converting the line endings should resolve the issue.
+
+To change the line endings:
+
+- **In Visual Studio Code:**
+  1. Open `docker-entrypoint-rails.sh`.
+  2. Look at the bottom right corner of the editor; you'll see either `CRLF` or `LF`.
+  3. Click on `CRLF` and select `LF` from the dropdown menu.
+
+After changing the line endings, save the file and try docker compose up again.
