@@ -3,7 +3,11 @@
 # Any additional code should be placed after this line.
 Rails.application.routes.draw do
   namespace :api do
-    end
+    resources :users
+    resources :sports
+    resources :teams
+    resources :user_teams, only: [:create] # For handling relationships between users and teams
+  end
 end
 
 # !Note from Alex: add this code if you want to work with the Sidekiq Web UI
