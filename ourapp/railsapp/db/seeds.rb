@@ -20,9 +20,33 @@
 # Clear the users table before seeding to avoid creating duplicates when you re-seed the database
 User.destroy_all
 
-# Create initial users
+
+# Create users
 User.create([
-  { name: "Alice Smith", email: "alice@example.com", age: 28 },
-  { name: "Bob Jones", email: "bob@example.com", age: 34 },
-  { name: "Carol White", email: "carol@example.com", age: 22 }
+  { name: "Andrew Li", email: "andrew.li@duke.edu", password: "12345" },
+  { name: "Andy Chen", email: "andy.chen@duke.edu", password: "password" }
 ])
+
+# Create sports
+nfl = Sport.create(name: "NFL")
+
+# Create teams and associate them with the NFL sport
+Team.create([
+  { name: "Dallas Cowboys", sport: nfl },
+  { name: "New England Patriots", sport: nfl },
+  { name: "Green Bay Packers", sport: nfl }
+])
+
+# (Optional) Assign teams to users (many-to-many relationship through user_teams)
+# Assuming you want to link Andrew Li to Cowboys and Patriots, and Andy Chen to Packers
+andrew = User.find_by(email: "andrew.li@duke.edu")
+andy = User.find_by(email: "andy.chen@duke.edu")
+
+cowboys = Team.find_by(name: "Dallas Cowboys")
+patriots = Team.find_by(name: "New England Patriots")
+packers = Team.find_by(name: "Green Bay Packers")
+
+# Establish the many-to-many relationship between users and teams
+andrew.teams << cowboys # same syntax as UserTeam.create(user: andrew, team: cowboys)
+andrew.teams << patriots
+andy.teams << packers
