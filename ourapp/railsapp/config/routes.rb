@@ -3,9 +3,15 @@
 # Any additional code should be placed after this line.
 Rails.application.routes.draw do
   resources :users do
+
     collection do
-      post 'login' # This will route POST requests to /users/login to the login action in UsersController
+      post 'login' 
     end
+
+    member do
+      get 'get_teams'
+    end
+
   end
   
   resources :sports

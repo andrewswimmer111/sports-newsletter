@@ -34,6 +34,14 @@ class UsersController < ApplicationController
     end
   end
 
+  def get_teams
+    user_params = params.permit(:id)
+
+    user = User.find_by(id: user_params[:id])
+    teams = user.teams
+    render json: {teams: teams}
+  end
+
   private
 
   def user_params
