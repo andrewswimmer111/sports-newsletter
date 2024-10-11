@@ -1,5 +1,7 @@
 // import React, { useState, useEffect, useContext, createContext } from "react";
 import "./Home.css";
+import Login from "../components/Login";
+
 // import axios from "axios";
 // import { Link } from "react-router-dom";
 // import { UserContext } from "../components/contexts/UserContext";
@@ -20,9 +22,7 @@ export default function Home() {
   return (
     <main className="layout-container">
       <div className="intro-section">
-        <h1 className="intro-title">Welcome to the House Course</h1>
-        <p className="intro-subtitle">Time to get to building!</p>
-
+        <Login/>
       </div>
     </main>
   );

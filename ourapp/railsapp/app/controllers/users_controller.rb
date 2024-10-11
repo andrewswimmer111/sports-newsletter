@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+
   def index
     @users = User.all
   end
@@ -17,6 +18,19 @@ class UsersController < ApplicationController
       redirect_to @user, notice: 'User was successfully created.'
     else
       render :new
+    end
+  end
+
+  # Custom actions
+  def login
+    user_params = params.permit(:email, :password)
+    puts user_params
+
+    user = User.find_by(email: user_params[:email])
+    if user && user.authenticate(user_params[:password])
+      render json: { message: 'Login successful', user: user }, status: :ok
+    else
+      render json: { error: 'Invalid username or password' }, status: :unauthorized
     end
   end
 
