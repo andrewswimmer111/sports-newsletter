@@ -92,7 +92,11 @@ export default function Login() {
             <div> {loginStatus} </div>
             <div> {user} </div>
             <br/>
-            <div> {teams} </div>
+            <ul>
+                {teams.map((team, index) => (
+                    <li key={index}>{team}</li>
+                ))}
+            </ul>
             
         </>
     );

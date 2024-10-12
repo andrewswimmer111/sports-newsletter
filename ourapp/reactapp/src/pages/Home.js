@@ -1,6 +1,10 @@
 // import React, { useState, useEffect, useContext, createContext } from "react";
 import "./Home.css";
 import Login from "../components/Login";
+import Banner from "../components/Banner";
+import SportCard from "../components/SportCard";
+import TeamCard from "../components/TeamCard";
+import Button from "../components/Button";
 
 // import axios from "axios";
 // import { Link } from "react-router-dom";
@@ -22,7 +26,11 @@ export default function Home() {
   return (
     <main className="layout-container">
       <div className="intro-section">
+        <Banner/>
         <Login/>
+        <SportCard/>
+        <TeamCard/>
+        <Button/>
       </div>
     </main>
   );
