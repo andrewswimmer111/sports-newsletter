@@ -10,7 +10,7 @@ Our application fulfills requirement 3, having users. We have not fulfilled any 
 https://duke.zoom.us/rec/share/M0NihkD0MFDAUvKZs5W1pGHyitgmbfarUzmkgaOAEuzJUupyOvLa-bAa9Gi7aE0E._tZbsHyIxpYml6bm
 
 ## Todo list
-Find an API we can use
-Organize our site into pages
-Style the website
-Set up a mailer
+- Find an API we can use
+- Organize our site into pages
+- Style the website
+- Set up a mailer
