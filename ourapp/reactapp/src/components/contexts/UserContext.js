@@ -2,16 +2,18 @@ import React, { createContext, useContext, useState } from 'react';
 
 // Create a UserContext with a default value of null
 export const UserContext = createContext({
+  id: null,
   user: null,
-  setUser: () => {}
+  email: null,
+  setUser: () => {},
 });
 
 export const UserProvider = ({ children }) => {
     // What would be a better default value for the user, rather than Alex? 
     // Think about data types and what would be a more appropriate default value.
-  const [user, setUser] = useState("Alex");
+  const [user, setUser] = useState("");
 
-// return the UserContext.Provider with the user state and setUser function as the value
+  // return the UserContext.Provider with the user state and setUser function as the value
   return (
     <UserContext.Provider value={{ user, setUser }}>
       {children}

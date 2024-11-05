@@ -6,10 +6,11 @@ export default function Login() {
     const [password, setPassword] = useState('');
 
     const [loginStatus, setLoginStatus] = useState('Please log in');
-    const [user, setUser] = useState()
 
     const [sportsData, setSportsData] = useState("Login to see your sports teams");
     const [teams, setTeams] = useState([]);
+
+    const {user, setUser} = useUser();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -31,7 +32,8 @@ export default function Login() {
             if (loginResponse.ok) {
                 const data = await loginResponse.json();
                 setLoginStatus(data.message);
-                setUser(data.user.id);
+                console.log(data)
+                setUser({id: data.user.id, name: data.user.name, email: data.user.email});
                 setTeams([]);
             } 
             else {
@@ -48,7 +50,7 @@ export default function Login() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const sportsData = await fetch(`http://localhost:3000/users/${user}/get_teams/`);
+                const sportsData = await fetch(`http://localhost:3000/users/${user.id}/get_teams/`);
 
                 if (sportsData.ok) {
                     const data = await sportsData.json();
@@ -90,7 +92,7 @@ export default function Login() {
                 <button type="submit">Login</button>
             </form>
             <div> {loginStatus} </div>
-            <div> {user} </div>
+            <div> {user.name} </div>
             <br/>
             <ul>
                 {teams.map((team, index) => (

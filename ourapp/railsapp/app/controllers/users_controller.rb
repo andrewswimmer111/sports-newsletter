@@ -4,9 +4,6 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
-  def show
-    @user = User.find(params[:id])
-  end
 
   def new
     @user = User.new
@@ -18,6 +15,21 @@ class UsersController < ApplicationController
       redirect_to @user, notice: 'User was successfully created.'
     else
       render :new
+    end
+  end
+
+  # Needed by React
+
+  def show
+    @user = User.find(params[:id])
+    render json: @user
+  end
+
+  def update
+    if @user.update(user_params)
+      render json: { message: 'Profile updated successfully.', user: @user }, status: :ok
+    else
+      render json: { errors: @user.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
