@@ -1,7 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useUser } from './contexts/UserContext';
+import { useNavigate } from 'react-router-dom';
+
 
 export default function Login() {
+
+    const navigate = useNavigate();
+    const handleGoToProfile = () => {
+        navigate('/profile');
+    }
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -99,6 +107,8 @@ export default function Login() {
                     <li key={index}>{team}</li>
                 ))}
             </ul>
+
+            <button onClick={handleGoToProfile}> Go to CRUD </button>
             
         </>
     );

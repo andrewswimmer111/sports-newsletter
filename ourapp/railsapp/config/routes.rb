@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
     member do
       get 'get_teams'
+      # Show and update are defined by default
     end
 
   end
