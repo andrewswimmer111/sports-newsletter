@@ -1,11 +1,11 @@
-# This is the end of the Rails application routes configuration.
-# It marks the end of the block where routes are defined using the `draw` method.
-# Any additional code should be placed after this line.
 Rails.application.routes.draw do
   resources :users do
 
     collection do
-      post 'login' 
+      post '/login', to: 'sessions#create'       # Route for logging in
+      delete '/logout', to: 'sessions#destroy'   # Route for logging out
+      get '/current_user', to: 'sessions#current_user'  # Route to get the currently logged-in user
+      post '/register', to: 'sessions#register'  # Route for registering a new user
     end
 
     member do
@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   resources :sports
   resources :teams
   resources :user_teams, only: [:create] # For handling relationships between users and teams
+
+  get 'api/teams', to: 'teams#index'
 end
 
 

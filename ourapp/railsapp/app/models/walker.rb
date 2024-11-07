@@ -1,2 +1,0 @@
-class Walker < ApplicationRecord
-end

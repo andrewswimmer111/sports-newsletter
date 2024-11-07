@@ -1,52 +1,61 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
-# Uncomment and modify the following lines according to your application's need.
-
-# Create default admin user
-# Admin.create!(username: 'admin', email: 'admin@example.com', password: 'securepassword')
-
 # Add initial data for dropdowns or constants
 # Status.create!([{ name: 'Active' }, { name: 'Inactive' }])
 
 # Add other necessary seeds below...
 
-
-# Clear the users table before seeding to avoid creating duplicates when you re-seed the database
+# Clear the users and teams tables before seeding to avoid creating duplicates when you re-seed the database
 User.destroy_all
-
+Team.destroy_all
 
 # Create users
-User.create([
+users = User.create([
   { name: "Andrew Li", email: "andrew.li@duke.edu", password: "12345" },
   { name: "Andy Chen", email: "andy.chen@duke.edu", password: "password" }
 ])
 
-# Create sports
-nfl = Sport.create(name: "NFL")
+# Create NFL teams
+nfl_teams = [
+  "Arizona Cardinals", "Atlanta Falcons", "Baltimore Ravens", "Buffalo Bills",
+  "Carolina Panthers", "Chicago Bears", "Cincinnati Bengals", "Cleveland Browns",
+  "Dallas Cowboys", "Denver Broncos", "Detroit Lions", "Green Bay Packers",
+  "Houston Texans", "Indianapolis Colts", "Jacksonville Jaguars", "Kansas City Chiefs",
+  "Las Vegas Raiders", "Los Angeles Chargers", "Los Angeles Rams", "Miami Dolphins",
+  "Minnesota Vikings", "New England Patriots", "New Orleans Saints", "New York Giants",
+  "New York Jets", "Philadelphia Eagles", "Pittsburgh Steelers", "San Francisco 49ers",
+  "Seattle Seahawks", "Tampa Bay Buccaneers", "Tennessee Titans", "Washington Commanders"
+]
 
-# Create teams and associate them with the NFL sport
-Team.create([
-  { name: "Dallas Cowboys", sport: nfl },
-  { name: "New England Patriots", sport: nfl },
-  { name: "Green Bay Packers", sport: nfl }
-])
+# Create NBA teams
+nba_teams = [
+  "Atlanta Hawks", "Boston Celtics", "Brooklyn Nets", "Charlotte Hornets",
+  "Chicago Bulls", "Cleveland Cavaliers", "Dallas Mavericks", "Denver Nuggets",
+  "Detroit Pistons", "Golden State Warriors", "Houston Rockets", "Indiana Pacers",
+  "Los Angeles Clippers", "Los Angeles Lakers", "Memphis Grizzlies", "Miami Heat",
+  "Milwaukee Bucks", "Minnesota Timberwolves", "New Orleans Pelicans", "New York Knicks",
+  "Oklahoma City Thunder", "Orlando Magic", "Philadelphia 76ers", "Phoenix Suns",
+  "Portland Trail Blazers", "Sacramento Kings", "San Antonio Spurs", "Toronto Raptors",
+  "Utah Jazz", "Washington Wizards"
+]
 
-# (Optional) Assign teams to users (many-to-many relationship through user_teams)
-# Assuming you want to link Andrew Li to Cowboys and Patriots, and Andy Chen to Packers
-andrew = User.find_by(email: "andrew.li@duke.edu")
-andy = User.find_by(email: "andy.chen@duke.edu")
+# Create teams with league attribute
+teams = nfl_teams.map { |name| { name: name, league: "NFL" } } +
+        nba_teams.map { |name| { name: name, league: "NBA" } }
+
+Team.create(teams)
+
+# Assign teams to users (many-to-many relationship through user_teams)
+andrew = users.find { |user| user.email == "andrew.li@duke.edu" }
+andy = users.find { |user| user.email == "andy.chen@duke.edu" }
 
 cowboys = Team.find_by(name: "Dallas Cowboys")
 patriots = Team.find_by(name: "New England Patriots")
 packers = Team.find_by(name: "Green Bay Packers")
+lakers = Team.find_by(name: "Los Angeles Lakers")
+warriors = Team.find_by(name: "Golden State Warriors")
 
 # Establish the many-to-many relationship between users and teams
-andrew.teams << cowboys # same syntax as UserTeam.create(user: andrew, team: cowboys)
+andrew.teams << cowboys
 andrew.teams << patriots
 andy.teams << packers
+andy.teams << lakers
+andy.teams << warriors

@@ -1,26 +1,42 @@
-import React, { useState } from 'react';
-import { useUser } from './contexts/UserContext';
+import React, { useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { UserContext } from './contexts/UserContext';
+
 export default function UserProfile() {
-  const { user, setUser } = useUser();
+    const { user } = useContext(UserContext);
+    const navigate = useNavigate();
+    const [teams, setTeams] = useState([]);
 
-  const [newName, setNewName] = useState('');
+    useEffect(() => {
+        if (user) {
+          fetch(`http://localhost:3000/users/${user.id}/get_teams`)
+                .then(response => response.json())
+                .then(data => setTeams(data.teams))
+                .catch(error => console.error('Error fetching teams:', error));
+        }
+    }, [user]);
 
-  // When do you want to update the user's name?
-  const handleUpdateName = () => {
-    setUser(newName);
-    setNewName('');
-  };
+    if (!user) {
+        return <p>No user data available</p>;
+    }
 
-  return (
-    <div>
-      <p>{`Hello, ${user || 'Guest'}!`}</p>
-      <input
-        type="text"
-        value={newName}
-        onChange={(e) => setNewName(e.target.value)}
-        placeholder="Enter new name"
-      />
-      <button onClick={handleUpdateName}>Update Name</button>
-    </div>
-  );
+    return (
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+            <h1>User Profile</h1>
+            <p>Name: {user.name}</p>
+            <p>Email: {user.email}</p>
+            {/* Add more user information as needed */}
+            <h2>Teams Followed</h2>
+            {teams.length > 0 ? (
+                <ul>
+                    {teams.map(team => (
+                        <li key={team.id}>{team.name}</li>
+                    ))}
+                </ul>
+            ) : (
+                <p>No teams followed</p>
+            )}
+            <button onClick={() => navigate('/')} style={{ fontSize: '18px', fontWeight: 'bold', marginTop: '20px' }}>Home</button>
+        </div>
+    );
 }

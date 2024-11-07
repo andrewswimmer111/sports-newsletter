@@ -1,6 +1,12 @@
 class TeamsController < ApplicationController
   def index
-    @teams = Team.all
+    league = params[:league]
+    if league.present?
+      teams = Team.where(league: league)
+      render json: teams
+    else
+      render json: { error: 'League parameter is required' }, status: :bad_request
+    end
   end
 
   def show
@@ -23,7 +29,6 @@ class TeamsController < ApplicationController
   private
 
   def team_params
-    params.require(:team).permit(:name, :sport_id)
+    params.require(:team).permit(:name, :league)  
   end
 end
-

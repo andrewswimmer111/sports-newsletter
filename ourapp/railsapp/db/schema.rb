@@ -10,22 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_10_10_235126) do
+ActiveRecord::Schema[7.0].define(version: 2024_10_10_151549) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "sports", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "teams", force: :cascade do |t|
     t.string "name", null: false
-    t.bigint "sport_id", null: false
+    t.string "league", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["sport_id"], name: "index_teams_on_sport_id"
   end
 
   create_table "user_teams", force: :cascade do |t|
@@ -40,12 +33,11 @@ ActiveRecord::Schema[7.0].define(version: 2024_10_10_235126) do
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
+    t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "password_digest"
   end
 
-  add_foreign_key "teams", "sports"
   add_foreign_key "user_teams", "teams"
   add_foreign_key "user_teams", "users"
 end

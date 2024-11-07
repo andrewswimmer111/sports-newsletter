@@ -21,13 +21,9 @@ class UsersController < ApplicationController
     end
   end
 
-  # Custom actions
   def login
-    user_params = params.permit(:email, :password)
-    puts user_params
-
-    user = User.find_by(email: user_params[:email])
-    if user && user.authenticate(user_params[:password])
+    user = User.find_by(email: params[:email])
+    if user && user.authenticate(params[:password])
       render json: { message: 'Login successful', user: user }, status: :ok
     else
       render json: { error: 'Invalid username or password' }, status: :unauthorized
@@ -35,11 +31,13 @@ class UsersController < ApplicationController
   end
 
   def get_teams
-    user_params = params.permit(:id)
-
-    user = User.find_by(id: user_params[:id])
-    teams = user.teams
-    render json: {teams: teams}
+    user = User.find_by(id: params[:id])
+    if user
+      teams = user.teams
+      render json: { teams: teams }
+    else
+      render json: { error: 'User not found' }, status: :not_found
+    end
   end
 
   private

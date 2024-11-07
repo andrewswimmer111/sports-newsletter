@@ -1,103 +1,93 @@
-import React, { useState, useEffect } from 'react';
-import { useUser } from './contexts/UserContext';
+import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { UserContext } from './contexts/UserContext';
 
 export default function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
-    const [loginStatus, setLoginStatus] = useState('Please log in');
-    const [user, setUser] = useState()
-
-    const [sportsData, setSportsData] = useState("Login to see your sports teams");
-    const [teams, setTeams] = useState([]);
+    const { user, setUser } = useContext(UserContext);
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        console.log('Logging in with:', { email, password });
-    
         try {
-            const loginResponse = await fetch('http://localhost:3000/users/login', {
+            const response = await fetch('http://localhost:3000/users/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    email: email, 
+                    email: email,
                     password: password,
                 }),
             });
-    
-            if (loginResponse.ok) {
-                const data = await loginResponse.json();
-                setLoginStatus(data.message);
-                setUser(data.user.id);
-                setTeams([]);
-            } 
-            else {
-                const errorData = await loginResponse.json();
-                setLoginStatus(errorData.error)
+
+            if (response.ok) {
+                const data = await response.json();
+                setUser(data.user);
+                navigate('/'); // Redirect to home page
+            } else {
+                const errorData = await response.json();
+                console.error('Login failed:', errorData.error || 'Unknown error');
             }
-        } 
-        catch (error) {
+        } catch (error) {
             console.error('Error logging in:', error);
         }
     };
 
-    // Run useEffect to fetch data whenever user changes
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const sportsData = await fetch(`http://localhost:3000/users/${user}/get_teams/`);
+    const signOut = async () => {
+        try {
+            const response = await fetch('http://localhost:3000/users/logout', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
 
-                if (sportsData.ok) {
-                    const data = await sportsData.json();
-                    for (let i = 0; i < data.teams.length; i++) {
-                        let newTeam = data.teams[i].name
-                        setTeams((prevTeams) => [...prevTeams, newTeam]);
-                    }
-                } 
-                else {
-                    const errorData = await sportsData.json();
-                    setSportsData(errorData.error);
-                }
+            if (response.ok) {
+                setUser(null); // Clear the user from context
+                navigate('/'); // Redirect to home page
+            } else {
+                const errorData = await response.json();
+                console.error('Logout failed:', errorData.error || 'Unknown error');
             }
-            catch (error) {
-                console.error('Error logging in:', error);
-            }
+        } catch (error) {
+            console.error('Error logging out:', error);
         }
-
-        fetchData()
-    }, [user])
+    };
 
     return (
-        <>
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    placeholder="Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)} // Update username state
-                    required // Makes this field required
-                />
-                <input
-                    type="password" // Change to password type for security
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)} // Update password state
-                    required // Makes this field required
-                />
-                <button type="submit">Login</button>
-            </form>
-            <div> {loginStatus} </div>
-            <div> {user} </div>
-            <br/>
-            <ul>
-                {teams.map((team, index) => (
-                    <li key={index}>{team}</li>
-                ))}
-            </ul>
-            
-        </>
+        <div>
+            {user ? (
+                <div>
+                    <h2>Welcome back, {user.name}!</h2>
+                    <button onClick={signOut}>Sign Out</button>
+                </div>
+            ) : (
+                <form onSubmit={handleSubmit}>
+                    <h2>Login</h2>
+                    <label>
+                        Email:
+                        <input 
+                            type="email" 
+                            value={email} 
+                            onChange={(e) => setEmail(e.target.value)} 
+                        />
+                    </label>
+                    <br />
+                    <label>
+                        Password:
+                        <input 
+                            type="password" 
+                            value={password} 
+                            onChange={(e) => setPassword(e.target.value)} 
+                        />
+                    </label>
+                    <br />
+                    <button type="submit">Login</button>
+                </form>
+            )}
+        </div>
     );
 }
