@@ -40,11 +40,11 @@ export default function EditUserProfile() {
             if (response.ok) {
                 const updatedUser = await response.json();
                 console.log(updatedUser.message)
+                setMessage(updatedUser.message + ", refresh to see updates")
                 localStorage.setItem('user', JSON.stringify(updatedUser.user));
-                
-              } else {
-                console.log("Error")
-                // Handle error (e.g., display an error message)
+            } else {
+                const errorData = await response.json();
+                setMessage(errorData.error)
             }
         }
     };
