@@ -21,16 +21,33 @@ export default function EditUserProfile() {
         }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault();
         if (formInfo.confirmPassword !== formInfo.newPassword) {
             console.log("NO")
             setMessage('Failed, passwords do not match')
         }
         else {
-            console.log('Updated User Info:', formInfo);
+            console.log(user.id)
+            console.log(formInfo)
+            const response = await fetch(`http://localhost:3000/users/${user.id}`, {
+                method: 'PATCH',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formInfo),
+            });
+            if (response.ok) {
+                const updatedUser = await response.json();
+                console.log(updatedUser.message)
+                localStorage.setItem('user', JSON.stringify(updatedUser.user));
+                
+              } else {
+                console.log("Error")
+                // Handle error (e.g., display an error message)
+            }
         }
-      };
+    };
 
     useEffect(()=> {
         console.log(user)

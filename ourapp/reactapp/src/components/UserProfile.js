@@ -28,7 +28,7 @@ export default function UserProfile() {
             <p>Email: {user.email}</p>
             {/* Add more user information as needed */}
             <h2>Teams Followed</h2>
-            {teams.length > 0 ? (
+            {teams && teams.length > 0 ? (
                 <ul>
                     {teams.map(team => (
                         <li key={team.id}>{team.name}</li>
