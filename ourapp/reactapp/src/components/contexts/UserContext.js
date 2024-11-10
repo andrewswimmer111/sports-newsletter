@@ -7,38 +7,51 @@ export const UserContext = createContext({
 });
 
 export const UserProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(() => {
+    const storedUser = localStorage.getItem('user');
+    return storedUser ? JSON.parse(storedUser) : null;
+  });
   const [loading, setLoading] = useState(true); // Loading state
+
+  const setUserAndStore = (user) => {
+    setUser(user);
+    if (user) {
+        localStorage.setItem('user', JSON.stringify(user));
+    } else {
+        localStorage.removeItem('user');
+    }
+};
 
   // Fetch the current user when the component mounts
   useEffect(() => {
     const fetchCurrentUser = async () => {
-      try {
-        const response = await fetch('http://localhost:3000/users/current_user', {
-          method: 'GET',
-          credentials: 'include', // Include cookies in the request
-        });
+      if (!user) {
+        try {
+          const response = await fetch('http://localhost:3000/users/current_user', {
+            method: 'GET',
+            credentials: 'include', // Include cookies in the request
+          });
 
-        if (response.ok) {
-          const data = await response.json();
-          setUser(data.user); // Set the current user in context
-        } else {
-          setUser(null); // No user is logged in
+          if (response.ok) {
+            const data = await response.json();
+            setUser(data.user); // Set the current user in context
+          } else {
+            setUser(null); // No user is logged in
+          }
+        } catch (error) {
+          console.error('Error fetching current user:', error);
+          setUser(null);
+        } finally {
+          setLoading(false); // Loading is done
         }
-      } catch (error) {
-        console.error('Error fetching current user:', error);
-        setUser(null);
-      } finally {
-        setLoading(false); // Loading is done
       }
     };
-
     fetchCurrentUser();
   }, []);
 
   // Return the UserContext.Provider with the user state and setUser function as the value
   return (
-    <UserContext.Provider value={{ user, setUser}}>
+    <UserContext.Provider value={{ user, setUser: setUserAndStore}}>
       {children}
     </UserContext.Provider>
   );

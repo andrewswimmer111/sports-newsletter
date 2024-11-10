@@ -20,7 +20,6 @@ import SportCard from "../components/SportCard";
 
 export default function Home() {
   // Add back in when working on UserTest:
-  // const user = useContext(UserContext);
 
   return (
     <main className="layout-container">

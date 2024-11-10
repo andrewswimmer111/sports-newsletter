@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from './contexts/UserContext';
+import EditUserProfile from './EditUserProfile';
 
 export default function UserProfile() {
     const { user } = useContext(UserContext);
@@ -37,6 +38,10 @@ export default function UserProfile() {
                 <p>No teams followed</p>
             )}
             <button onClick={() => navigate('/')} style={{ fontSize: '18px', fontWeight: 'bold', marginTop: '20px' }}>Home</button>
+            
+            <div> See below</div>
+            <EditUserProfile/>
+
         </div>
     );
 }

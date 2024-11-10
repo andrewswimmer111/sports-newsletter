@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from './contexts/UserContext';
 
@@ -8,9 +8,9 @@ export default function Login() {
     const { user, setUser } = useContext(UserContext);
     const navigate = useNavigate();
 
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         try {
             const response = await fetch('http://localhost:3000/users/login', {
                 method: 'POST',
@@ -25,7 +25,7 @@ export default function Login() {
 
             if (response.ok) {
                 const data = await response.json();
-                setUser(data.user);
+                setUser(data.user);                
                 navigate('/'); // Redirect to home page
             } else {
                 const errorData = await response.json();
