@@ -1,9 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { UserContext } from "../components/contexts/UserContext";
+
 
 export default function SportCard() {
     const [selectedLeague, setSelectedLeague] = useState(null);
     const [teams, setTeams] = useState([]);
     const [selectedTeams, setSelectedTeams] = useState([]);
+    const [message, setMessage] = useState('');
+
+    const { user } = useContext(UserContext);
+
 
     useEffect(() => {
         // Fetch teams based on the selected league
@@ -25,6 +31,30 @@ export default function SportCard() {
                 : [...prevSelectedTeams, teamId]
         );
     };
+
+    const handleTeamSubmit = async(e) => {
+        console.log(selectedTeams)
+        const response = await fetch(`http://localhost:3000/user_teams`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                user_teams: {
+                    user_id: user.id,
+                    team_ids: selectedTeams
+                }
+            }),
+        });
+        if (response.ok) {
+            const confirmation = await response.json();
+            console.log(confirmation.message)
+            setMessage(confirmation.message)
+        } else {
+            const errorData = await response.json();
+            setMessage(errorData.error)
+        }
+    }
 
     const columnWiseTeams = [];
     const columns = 4;
@@ -85,6 +115,8 @@ export default function SportCard() {
                             </li>
                         ))}
                     </ul>
+                    <button onClick={handleTeamSubmit}> Update followed teams </button>
+                    <div> {message} </div>
                 </>
             )}
         </>

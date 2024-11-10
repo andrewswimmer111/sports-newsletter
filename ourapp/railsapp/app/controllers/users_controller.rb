@@ -45,50 +45,33 @@ class UsersController < ApplicationController
 
   def update
 
-    puts("1")
     # Ensure current password is present
     if update_params[:currentPassword].blank?
       return render json: { error: 'Current password is required' }, status: :unprocessable_entity
     end
 
-    puts("2")
     # Check if the current password is correct
     unless @user.authenticate(update_params[:currentPassword])
       return render json: { error: 'Current password is incorrect' }, status: :unauthorized
     end
 
-    puts("3")
-    Rails.logger.debug "PARAMS: #{update_params.inspect}"
-
-    puts("4")
     # Create update data
     filtered_params = update_params.compact_blank
-    puts("5")
-    Rails.logger.debug "Pre Filtered Params: #{filtered_params.inspect}"
 
-    puts("6")
     if filtered_params[:newPassword].present?
       filtered_params[:password] = filtered_params[:newPassword]
     end
 
-    puts("7")
     filtered_params.delete(:newPassword)
     filtered_params.delete(:confirmPassword)
     filtered_params.delete(:currentPassword)
 
-    puts("8")
-    Rails.logger.debug "Post Filtered Params: #{filtered_params.inspect}"
-    puts "Post Filtered Params: #{filtered_params.inspect}"
-
-    puts("9")
     # Do the updating
     if @user.update(filtered_params)
       render json: { user: @user, message: 'User updated successfully' }, status: :ok
     else
-      Rails.logger.debug "User errors: #{@user.errors.full_messages}"
       render json: { errors: @user.errors.full_messages }, status: :unprocessable_entity
     end
-    puts("10")
   end
 
   private
