@@ -33,7 +33,6 @@ export default function SportCard() {
     };
 
     const handleTeamSubmit = async(e) => {
-        console.log(selectedTeams)
         const response = await fetch(`http://localhost:3000/user_teams`, {
             method: 'POST',
             headers: {

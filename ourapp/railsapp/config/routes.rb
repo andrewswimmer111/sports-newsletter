@@ -18,6 +18,10 @@ Rails.application.routes.draw do
   resources :teams
   resources :user_teams, only: [:create] # For handling relationships between users and teams
 
+
+  delete '/user_teams/unfollow', to: 'user_teams#destroy' # For deleting relationships
+
+
   get 'api/teams', to: 'teams#index'
 end
 

@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from './contexts/UserContext';
 import EditUserProfile from './EditUserProfile';
+import EditUserTeams from './EditUserTeams';
 
 export default function UserProfile() {
     const { user } = useContext(UserContext);
@@ -41,6 +42,7 @@ export default function UserProfile() {
             
             <div> See below</div>
             <EditUserProfile/>
+            <EditUserTeams followed_teams={teams}/>
 
         </div>
     );

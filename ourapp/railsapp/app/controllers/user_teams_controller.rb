@@ -14,8 +14,24 @@ class UserTeamsController < ApplicationController
       render json: { error: 'There was an error following the teams.', details: e.message, status: :unprocessable_entity }
     end
   end
-  
 
+  def destroy
+    team_ids = user_team_params[:team_ids]
+    user_id = user_team_params[:user_id]
+  
+    begin
+      UserTeam.transaction do
+        team_ids.each do |team_id|
+          user_team = UserTeam.find_by(user_id: user_id, team_id: team_id)
+          user_team&.destroy!  # Destroy only if found
+        end
+      end
+      render json: { message: 'Teams were successfully unfollowed.', status: :ok }
+    rescue ActiveRecord::RecordNotDestroyed => e
+      render json: { error: 'There was an error unfollowing the teams.', details: e.message, status: :unprocessable_entity }
+    end
+  end  
+  
   private
 
   def user_team_params
