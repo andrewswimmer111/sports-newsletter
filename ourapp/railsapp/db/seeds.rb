@@ -3,9 +3,21 @@
 
 # Add other necessary seeds below...
 
+require 'csv'
+
 # Clear the users and teams tables before seeding to avoid creating duplicates when you re-seed the database
 User.destroy_all
 Team.destroy_all
+
+def import_teams_from_csv(file_path)
+  CSV.foreach(file_path, headers: true) do |row|
+    # Create or update each team based on the CSV data
+    Team.find_or_create_by(name: row['name']) do |team|
+      team.league = row['league']
+      team.api_id = row['api_id']
+    end
+  end
+end
 
 # Create users
 users = User.create([
