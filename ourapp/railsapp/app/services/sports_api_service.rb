@@ -16,4 +16,17 @@ class SportsApiService
     Rails.logger.error("Failed to fetch NFL data: #{e.message}")
     nil
   end
+
+  def fetch_NBA_data(date)
+    response = HTTParty.get(
+      "https://v1.basketball.api-sports.io/games?date=#{date}", 
+      headers: { 
+        "x-rapidapi-key" => ENV["SPORTS_API_KEY"]
+      }
+    )
+    JSON.parse(response.body)
+  rescue => e
+    Rails.logger.error("Failed to fetch NFL data: #{e.message}")
+    nil
+  end
 end

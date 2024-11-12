@@ -13,4 +13,18 @@ namespace :sports_api do
       puts "Failed to fetch NFL data for #{date}."
     end
   end
+
+  task :fetch_NBA_data, [:date] => :environment do |t, args|
+    date = args[:date] || Date.today.to_s               # Default to today's date if none is provided
+
+    service = SportsApiService.new()
+    result = service.fetch_NBA_data(date)
+
+    if result
+      puts "NBA data for #{date} fetched successfully:"
+      puts result
+    else
+      puts "Failed to fetch NBA data for #{date}."
+    end
+  end
 end
