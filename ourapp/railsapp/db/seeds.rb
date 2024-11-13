@@ -6,6 +6,8 @@
 require 'csv'
 
 # Clear the users and teams tables before seeding to avoid creating duplicates when you re-seed the database
+UserTeam.destroy_all
+
 User.destroy_all
 Team.destroy_all
 
@@ -25,35 +27,7 @@ users = User.create([
   { name: "Andy Chen", email: "andy.chen@duke.edu", password: "password" }
 ])
 
-# Create NFL teams
-nfl_teams = [
-  "Arizona Cardinals", "Atlanta Falcons", "Baltimore Ravens", "Buffalo Bills",
-  "Carolina Panthers", "Chicago Bears", "Cincinnati Bengals", "Cleveland Browns",
-  "Dallas Cowboys", "Denver Broncos", "Detroit Lions", "Green Bay Packers",
-  "Houston Texans", "Indianapolis Colts", "Jacksonville Jaguars", "Kansas City Chiefs",
-  "Las Vegas Raiders", "Los Angeles Chargers", "Los Angeles Rams", "Miami Dolphins",
-  "Minnesota Vikings", "New England Patriots", "New Orleans Saints", "New York Giants",
-  "New York Jets", "Philadelphia Eagles", "Pittsburgh Steelers", "San Francisco 49ers",
-  "Seattle Seahawks", "Tampa Bay Buccaneers", "Tennessee Titans", "Washington Commanders"
-]
-
-# Create NBA teams
-nba_teams = [
-  "Atlanta Hawks", "Boston Celtics", "Brooklyn Nets", "Charlotte Hornets",
-  "Chicago Bulls", "Cleveland Cavaliers", "Dallas Mavericks", "Denver Nuggets",
-  "Detroit Pistons", "Golden State Warriors", "Houston Rockets", "Indiana Pacers",
-  "Los Angeles Clippers", "Los Angeles Lakers", "Memphis Grizzlies", "Miami Heat",
-  "Milwaukee Bucks", "Minnesota Timberwolves", "New Orleans Pelicans", "New York Knicks",
-  "Oklahoma City Thunder", "Orlando Magic", "Philadelphia 76ers", "Phoenix Suns",
-  "Portland Trail Blazers", "Sacramento Kings", "San Antonio Spurs", "Toronto Raptors",
-  "Utah Jazz", "Washington Wizards"
-]
-
-# Create teams with league attribute
-teams = nfl_teams.map { |name| { name: name, league: "NFL" } } +
-        nba_teams.map { |name| { name: name, league: "NBA" } }
-
-Team.create(teams)
+import_teams_from_csv(Rails.root.join('db', 'seeds', 'NFL_and_NBA.csv'))
 
 # Assign teams to users (many-to-many relationship through user_teams)
 andrew = users.find { |user| user.email == "andrew.li@duke.edu" }

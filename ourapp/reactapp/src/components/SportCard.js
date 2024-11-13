@@ -47,7 +47,7 @@ export default function SportCard() {
         });
         if (response.ok) {
             const confirmation = await response.json();
-            console.log(confirmation.message)
+            console.log(confirmation)
             setMessage(confirmation.message)
         } else {
             const errorData = await response.json();

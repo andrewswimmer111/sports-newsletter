@@ -1,0 +1,63 @@
+name,league,api_id
+Arizona Cardinals,NFL,11
+Atlanta Falcons,NFL,8
+Baltimore Ravens,NFL,5
+Buffalo Bills,NFL,20
+Carolina Panthers,NFL,19
+Chicago Bears,NFL,16
+Cincinnati Bengals,NFL,10
+Cleveland Browns,NFL,9
+Dallas Cowboys,NFL,29
+Denver Broncos,NFL,28
+Detroit Lions,NFL,7
+Green Bay Packers,NFL,15
+Houston Texans,NFL,26
+Indianapolis Colts,NFL,21
+Jacksonville Jaguars,NFL,2
+Kansas City Chiefs,NFL,17
+Las Vegas Raiders,NFL,1
+Los Angeles Chargers,NFL,30
+Los Angeles Rams,NFL,31
+Miami Dolphins,NFL,25
+Minnesota Vikings,NFL,32
+New England Patriots,NFL,3
+New Orleans Saints,NFL,27
+New York Giants,NFL,4
+New York Jets,NFL,13
+Philadelphia Eagles,NFL,12
+Pittsburgh Steelers,NFL,22
+San Francisco 49ers,NFL,14
+Seattle Seahawks,NFL,23
+Tampa Bay Buccaneers,NFL,24
+Tennessee Titans,NFL,6
+Washington Commanders,NFL,18
+Atlanta Hawks,NBA,1
+Boston Celtics,NBA,2
+Brooklyn Nets,NBA,4
+Charlotte Hornets,NBA,5
+Chicago Bulls,NBA,6
+Cleveland Cavaliers,NBA,7
+Dallas Mavericks,NBA,8
+Denver Nuggets,NBA,9
+Detroit Pistons,NBA,10
+Golden State Warriors,NBA,11
+Houston Rockets,NBA,14
+Indiana Pacers,NBA,15
+Los Angeles Clippers,NBA,16
+Los Angeles Lakers,NBA,17
+Memphis Grizzlies,NBA,19
+Miami Heat,NBA,20
+Milwaukee Bucks,NBA,21
+Minnesota Timberwolves,NBA,22
+New Orleans Pelicans,NBA,23
+New York Knicks,NBA,24
+Oklahoma City Thunder,NBA,25
+Orlando Magic,NBA,26
+Philadelphia 76ers,NBA,27
+Phoenix Suns,NBA,28
+Portland Trail Blazers,NBA,29
+Sacramento Kings,NBA,30
+San Antonio Spurs,NBA,31
+Toronto Raptors,NBA,38
+Utah Jazz,NBA,40
+Washington Wizards,NBA,41

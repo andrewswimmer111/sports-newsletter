@@ -42,8 +42,12 @@ export default function UserProfile() {
             
             <div> See below</div>
             <EditUserProfile/>
-            <EditUserTeams followed_teams={teams}/>
+            { teams && teams.length > 0 ? (
+                <EditUserTeams followed_teams={teams}/>
 
+            ) : (
+                <div> Go follow some teams </div>
+            )}
         </div>
     );
 }
