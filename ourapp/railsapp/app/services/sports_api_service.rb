@@ -19,8 +19,9 @@ class SportsApiService
 
   def fetch_NBA_data(date)
     response = HTTParty.get(
-      "https://v1.basketball.api-sports.io/games?date=#{date}", 
+      "https://v2.nba.api-sports.io/games?date=#{date}", 
       headers: { 
+        "x-rapidapi-host" => "v2.nba.api-sports.io",
         "x-rapidapi-key" => ENV["SPORTS_API_KEY"]
       }
     )
