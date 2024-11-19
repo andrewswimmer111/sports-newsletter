@@ -11,7 +11,7 @@ export default function UserProfile() {
 
     useEffect(() => {
         if (user) {
-          fetch(`http://localhost:3000/users/${user.id}/get_teams`)
+          fetch(`process.env.REACT_APP_API_URL/users/${user.id}/get_teams`)
                 .then(response => response.json())
                 .then(data => setTeams(data.teams))
                 .catch(error => console.error('Error fetching teams:', error));
