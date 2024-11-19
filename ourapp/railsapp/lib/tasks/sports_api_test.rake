@@ -1,6 +1,6 @@
 namespace :sports_api do
   desc "Test the SportsApiService with optional date"
-  task :fetch_NFL_data, [:date] => :environment do |t, args|
+  task :fetch_NFL_data, [:date] => :environment do |t, args| # comment
     date = args[:date] || Date.today.to_s               # Default to today's date if none is provided
 
     service = SportsApiService.new()
