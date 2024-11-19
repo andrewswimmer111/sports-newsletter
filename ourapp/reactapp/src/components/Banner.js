@@ -8,7 +8,7 @@ export default function Banner() {
 
     const signOut = async () => {
         try {
-            const response = await fetch('process.env.REACT_APP_API_URL/users/logout', {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/users/logout`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
