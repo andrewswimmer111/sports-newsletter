@@ -18,3 +18,11 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
+
+# Set the time zone to Eastern Time
+env :TZ, 'America/New_York'
+
+# Schedule the task to run every day at 8:00 am Eastern Time
+every 1.day, at: '8:00 am' do
+  rake "send_daily_game_results"
+end
