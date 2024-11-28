@@ -1,10 +1,12 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
+import Home2 from "./pages/Home2";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import UserProfile from "./components/UserProfile"; 
 import { UserProvider } from "./components/contexts/UserContext";
+
+import './App.css'
 
 function App() {
   return (
@@ -12,7 +14,7 @@ function App() {
     <UserProvider>  
       <Router>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home2 />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/profile" element={<UserProfile />} /> 

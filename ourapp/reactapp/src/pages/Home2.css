@@ -1,0 +1,134 @@
+.greeter {
+    height: 100vh;
+}
+
+.main-background {
+    position: relative; 
+    background-image: url('/public/images/steam.jpeg');
+    background-size: cover;
+    background-position: center; 
+    background-repeat: no-repeat; 
+    height: 90%; /* Ensure the element takes up the full height of the viewport */
+    color: white; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    text-align: center;
+}
+
+
+.main-background::before {
+    content: ''; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);  /* Semi-transparent black overlay */
+    z-index: 1;  /* Ensures the overlay is on top of the background */
+}
+
+.main-background div,
+.main-background button {
+    position: relative;  
+    z-index: 2;  
+} 
+
+
+.main-header {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-top: 10vh;
+    margin-bottom: 5vh;
+    color:#fff5c1;
+}
+
+.main-subheader {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 5vh;
+}
+
+.main-subheader span {
+    display: block;
+}
+
+.feature-list {
+    margin-bottom: 5vh;
+}
+
+.feature-item {
+    display: block;
+    margin: 10px 0;
+    font-size: 1 rem;
+    white-space: pre-wrap; 
+}
+
+.feature-item span {
+    display: block; /* Ensure each part is on a new line */
+    font-weight: bold;
+}
+
+.signup-button {
+    background-color: #f7e382;
+    color: black;
+    padding: 12px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 10px 0;
+    width: 50vw;
+}
+
+.signup-button:hover {
+    background-color: #f7d05f;
+}
+
+/* Part 2 */
+
+.extras {
+    background-color: #212529; /* Light background */
+    padding: 40px 20px; /* Space around content */
+    text-align: center; /* Center text */
+    font-family: 'Arial', sans-serif;
+    color: #f9f9f9; /* Text color */
+}
+
+.section-title {
+    font-size: 2rem; /* Larger font size for section titles */
+    font-weight: bold;
+    color: #fff5c1; /* Dark text for section titles */
+    margin-bottom: 15px; /* Space after title */
+}
+
+.section-content {
+    font-size: 1.1rem; /* Regular content size */
+    line-height: 1.6; /* Line spacing for readability */
+    color: white; /* Slightly lighter text for general content */
+    margin-bottom: 5vh; /* Space after content */
+    max-width: 900px; /* Max width for text blocks */
+    margin-left: auto;
+    margin-right: auto; /* Center content */
+}
+
+.reviews {
+    margin-top: 20px;
+    margin-bottom: 5vh;
+}
+
+.review-item {
+    font-style: italic; /* Italicized reviews */
+    color: white; /* Lighter text for reviews */
+    font-size: 1.1rem; /* Slightly larger text for reviews */
+    margin-bottom: 15px; /* Space between reviews */
+}
+
+
+
+
+
+
+@media (min-width: 768px) {
+
+}

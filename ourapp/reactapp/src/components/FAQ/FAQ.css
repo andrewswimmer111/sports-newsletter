@@ -1,0 +1,71 @@
+.faq-container {
+    background-color: #212529; /* Updated to dark gray background */
+    padding: 20px 20px; /* Consistent padding */
+    border-radius: 8px; /* Rounded corners for consistency */
+    margin-bottom: 30px; /* Space between FAQ section and the next content */
+    color: #f9f9f9; /* Text color (light gray for contrast) */
+    margin-top: -1.5vh;
+  }
+
+.faq-title {
+    font-size: 2rem; /* Larger font size for section titles */
+    font-weight: bold;
+    color: #fff5c1; /* Dark text for section titles */
+    margin-bottom: 15px; /* Space after title */
+}
+
+.faq-container h2 {
+  font-size: 2rem; /* Use the same font size as the section title */
+  font-weight: bold;
+  color: #f7e382; /* Light yellowish color for the heading */
+  text-align: center; /* Center the heading */
+  margin-bottom: 20px;
+}
+
+.faq-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.faq-item {
+  background-color: #343a40; /* Slightly lighter gray for FAQ items */
+  margin-bottom: 10px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.faq-question {
+  padding: 15px;
+  background-color: #495057; /* Medium gray for questions */
+  font-size: 1.1rem; /* Match content font size */
+  font-weight: bold;
+  cursor: pointer;
+  border-bottom: 1px solid #ccc; /* Lighter border color */
+  color: #f9f9f9; /* Light text for better visibility */
+}
+
+.faq-answer {
+  padding: 15px;
+  background-color: #343a40; /* Same as FAQ item background color */
+  font-size: 1rem;
+  color: #f9f9f9;
+}
+
+.faq-question:hover {
+  background-color: #6c757d; /* Slight hover effect with a lighter gray */
+}
+
+@media (max-width: 768px) {
+  .faq-container {
+    padding: 15px; /* Less padding on mobile */
+  }
+
+  .faq-question {
+    font-size: 1rem; /* Adjust font size for mobile */
+  }
+
+  .faq-answer {
+    font-size: 0.9rem; /* Adjust font size for mobile */
+  }
+}
