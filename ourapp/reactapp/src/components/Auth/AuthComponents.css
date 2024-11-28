@@ -1,0 +1,105 @@
+/* Main container for both forms and toggles */
+.auth-container {
+  width: 100%;
+  max-width: 90vw;
+  margin: 0 auto;
+  box-sizing: border-box;
+  background-color: #343A40; /* Dark background for the form */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* Ensures clean edges for tab overlap */
+  position: relative;
+}
+
+/* Tab-style toggles for Login and Register */
+.toggle-container {
+  display: flex;
+  justify-content: space-around;
+  background-color: #212529; /* Inactive toggle color */
+}
+
+.toggle-tag {
+  flex: 1;
+  text-align: center;
+  padding: 10px 0;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+  color: white; /* Light yellow text */
+  transition: background-color 0.3s, color 0.3s;
+  border-bottom: 3px solid transparent;
+}
+
+.toggle-tag.active {
+  background-color: #343A40; /* Matches form background */
+  color: #FFF5C1; /* Light yellow for active text */
+  border-bottom: 3px solid #FFF5C1; /* Highlights active tab */
+}
+
+.toggle-tag:hover {
+  background-color: #343A40; /* Matches active toggle background */
+}
+
+/* Form container shared by Login and Register */
+.auth-form-container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  min-height: 45vh;
+  background-color: #343A40; /* Dark background for the form */
+}
+
+/* Form elements */
+.auth-form-container h2 {
+  font-size: 24px;
+  margin-bottom: 16px;
+  color: #FFF5C1; /* Light yellow for headings */
+}
+
+.auth-form-container input {
+  width: 100%;
+  padding: 8px 0; /* Remove padding around sides, keep a little for top/bottom */
+  font-size: 16px;
+  border: none; /* Remove box border */
+  border-bottom: 2px solid #DDD; /* Add underline */
+  background-color: transparent; /* Remove background color */
+  color: #F9F9F9; /* Dark text for input */
+  outline: none; /* Remove focus outline */
+  margin-bottom: 20px; /* Space between inputs */
+  transition: border-color 0.3s ease; /* Smooth transition for focus */
+}
+
+.auth-form-container input::placeholder {
+  color: #F9F9F9; /* Darker placeholder text */
+  opacity: 0.7; /* Subtle placeholder */
+}
+
+.auth-form-container input:focus {
+  border-bottom-color: #FFF5C1; /* Highlight underline on focus */
+}
+
+
+.auth-form-container button {
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
+  background-color: #f7e382; /* Dark button */
+  color: black; /* Light yellow text */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.auth-form-container button:hover {
+  background-color: #f7d05f; /* Slightly lighter for hover effect */
+}
+
+
+@media (min-width: 768px) {
+  .auth-container {
+    max-width: 500px;
+  }
+}

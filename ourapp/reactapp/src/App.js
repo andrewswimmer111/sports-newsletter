@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home2 from "./pages/Home2";
 import Login from "./components/Login";
+import Auth from "./pages/Auth";
 import Register from "./components/Register";
 import UserProfile from "./components/UserProfile"; 
 import { UserProvider } from "./components/contexts/UserContext";
@@ -15,7 +16,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Home2 />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Auth />} />
           <Route path="/register" element={<Register />} />
           <Route path="/profile" element={<UserProfile />} /> 
         </Routes>

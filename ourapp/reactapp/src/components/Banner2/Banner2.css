@@ -5,7 +5,7 @@
     padding: 10px 20px;
     background-color: #212529; /* Change this to your desired banner color */
     color: white;
-    height: 10%; /* Adjust height as needed */
+    height: 10vh; /* Adjust height as needed */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
