@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import './FAQ.css'; // Add your CSS here or use inline styles
+import './FAQ.css';
 
 const FAQ = () => {
-  const [openIndex, setOpenIndex] = useState(null);
+  const [openIndexes, setOpenIndexes] = useState([]);
 
   const faqs = [
     {
@@ -24,16 +24,20 @@ const FAQ = () => {
   ];
 
   const toggleAnswer = (index) => {
-    if (openIndex === index) {
-      setOpenIndex(null); // Close the question if it's already open
-    } else {
-      setOpenIndex(index); // Open the clicked question
-    }
+    setOpenIndexes((prevIndexes) => {
+      if (prevIndexes.includes(index)) {
+        // If the index is already open, remove it
+        return prevIndexes.filter((i) => i !== index);
+      } else {
+        // Otherwise, add the index to the open list
+        return [...prevIndexes, index];
+      }
+    });
   };
 
   return (
     <div className="faq-container">
-      <div className='faq-title'>FAQ</div>
+      <div className="faq-title">FAQ</div>
       <div className="faq-list">
         {faqs.map((faq, index) => (
           <div key={index} className="faq-item">
@@ -43,11 +47,11 @@ const FAQ = () => {
             >
               {faq.question}
             </div>
-            {openIndex === index && (
-              <div className="faq-answer">
-                {faq.answer}
-              </div>
-            )}
+            <div
+              className={`faq-answer ${openIndexes.includes(index) ? 'open' : ''}`}
+            >
+              {faq.answer}
+            </div>
           </div>
         ))}
       </div>

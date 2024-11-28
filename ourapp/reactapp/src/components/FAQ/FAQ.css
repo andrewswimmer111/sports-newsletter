@@ -1,24 +1,24 @@
 .faq-container {
-    background-color: #212529; /* Updated to dark gray background */
-    padding: 20px 20px; /* Consistent padding */
-    border-radius: 8px; /* Rounded corners for consistency */
-    margin-bottom: 30px; /* Space between FAQ section and the next content */
-    color: #f9f9f9; /* Text color (light gray for contrast) */
-    margin-top: -1.5vh;
-  }
+  background-color: #212529;
+  padding: 20px 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  color: #f9f9f9;
+  margin-top: -1.5vh;
+}
 
 .faq-title {
-    font-size: 2rem; /* Larger font size for section titles */
-    font-weight: bold;
-    color: #fff5c1; /* Dark text for section titles */
-    margin-bottom: 15px; /* Space after title */
+  font-size: 2rem;
+  font-weight: bold;
+  color: #fff5c1;
+  margin-bottom: 15px;
 }
 
 .faq-container h2 {
-  font-size: 2rem; /* Use the same font size as the section title */
+  font-size: 2rem;
   font-weight: bold;
-  color: #f7e382; /* Light yellowish color for the heading */
-  text-align: center; /* Center the heading */
+  color: #f7e382;
+  text-align: center;
   margin-bottom: 20px;
 }
 
@@ -28,7 +28,7 @@
 }
 
 .faq-item {
-  background-color: #343a40; /* Slightly lighter gray for FAQ items */
+  background-color: #343a40;
   margin-bottom: 10px;
   border-radius: 8px;
   overflow: hidden;
@@ -37,35 +37,46 @@
 
 .faq-question {
   padding: 15px;
-  background-color: #495057; /* Medium gray for questions */
-  font-size: 1.1rem; /* Match content font size */
+  background-color: #495057;
+  font-size: 1.1rem;
   font-weight: bold;
   cursor: pointer;
-  border-bottom: 1px solid #ccc; /* Lighter border color */
-  color: #f9f9f9; /* Light text for better visibility */
+  border-bottom: 1px solid #ccc;
+  color: #f9f9f9;
+  user-select: none;
 }
 
 .faq-answer {
   padding: 15px;
-  background-color: #343a40; /* Same as FAQ item background color */
+  background-color: #343a40;
   font-size: 1rem;
   color: #f9f9f9;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.3s ease-in, opacity 0.3s ease-in;
+  user-select: none;
+}
+
+.faq-answer.open {
+  max-height: 500px; /* You can adjust this depending on the length of your answers */
+  opacity: 1;
 }
 
 .faq-question:hover {
-  background-color: #6c757d; /* Slight hover effect with a lighter gray */
+  background-color: #6c757d;
 }
 
 @media (max-width: 768px) {
   .faq-container {
-    padding: 15px; /* Less padding on mobile */
+    padding: 15px;
   }
 
   .faq-question {
-    font-size: 1rem; /* Adjust font size for mobile */
+    font-size: 1rem;
   }
 
   .faq-answer {
-    font-size: 0.9rem; /* Adjust font size for mobile */
+    font-size: 0.9rem;
   }
 }

@@ -42,8 +42,18 @@ export default function Home() {
                 
                 <div className="section-title">Our Reviews</div>
                 <div className="reviews">
-                    <div className="review-item">"I love how I can track my favorite teams in one place! The weekly updates are a game-changer." – Andy C.</div>
-                    <div className="review-item">"The newsletter is really awesome. I think the people who made this website are awesome too." – Andrew L.</div>
+                    <div className="review-item">
+                        <blockquote>
+                            <p>"I love how I can track my favorite teams in one place! The weekly updates are a game-changer."</p>
+                            <footer>– Andy C.</footer>
+                        </blockquote>
+                    </div>
+                    <div className="review-item">
+                        <blockquote>
+                            <p>"The newsletter is really awesome. I think the people who made this website are awesome too."</p>
+                            <footer>– Andrew L.</footer>
+                        </blockquote>
+                    </div>
                 </div>
                 
                 <FAQ></FAQ>

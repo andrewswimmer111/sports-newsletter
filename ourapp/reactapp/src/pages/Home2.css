@@ -3,37 +3,35 @@
 }
 
 .main-background {
-    position: relative; 
+    position: relative;
     background-image: url('/public/images/steam.jpeg');
     background-size: cover;
-    background-position: center; 
-    background-repeat: no-repeat; 
-    height: 90%; /* Ensure the element takes up the full height of the viewport */
-    color: white; 
-    display: flex; 
-    flex-direction: column; 
-    align-items: center; 
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 90%;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
 }
 
-
 .main-background::before {
-    content: ''; 
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);  /* Semi-transparent black overlay */
-    z-index: 1;  /* Ensures the overlay is on top of the background */
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
 }
 
 .main-background div,
 .main-background button {
-    position: relative;  
-    z-index: 2;  
-} 
-
+    position: relative;
+    z-index: 2;
+}
 
 .main-header {
     font-size: 3rem;
@@ -61,11 +59,11 @@
     display: block;
     margin: 10px 0;
     font-size: 1 rem;
-    white-space: pre-wrap; 
+    white-space: pre-wrap;
 }
 
 .feature-item span {
-    display: block; /* Ensure each part is on a new line */
+    display: block;
     font-weight: bold;
 }
 
@@ -85,31 +83,28 @@
     background-color: #f7d05f;
 }
 
-/* Part 2 */
-
 .extras {
-    background-color: #212529; /* Light background */
-    padding: 40px 20px; /* Space around content */
-    text-align: center; /* Center text */
-    font-family: 'Arial', sans-serif;
-    color: #f9f9f9; /* Text color */
+    background-color: #212529;
+    padding: 40px 20px;
+    text-align: center;
+    color: #f9f9f9;
 }
 
 .section-title {
-    font-size: 2rem; /* Larger font size for section titles */
+    font-size: 2rem;
     font-weight: bold;
-    color: #fff5c1; /* Dark text for section titles */
-    margin-bottom: 15px; /* Space after title */
+    color: #fff5c1;
+    margin-bottom: 15px;
 }
 
 .section-content {
-    font-size: 1.1rem; /* Regular content size */
-    line-height: 1.6; /* Line spacing for readability */
-    color: white; /* Slightly lighter text for general content */
-    margin-bottom: 5vh; /* Space after content */
-    max-width: 900px; /* Max width for text blocks */
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: white;
+    margin-bottom: 5vh;
+    max-width: 900px;
     margin-left: auto;
-    margin-right: auto; /* Center content */
+    margin-right: auto;
 }
 
 .reviews {
@@ -118,17 +113,84 @@
 }
 
 .review-item {
-    font-style: italic; /* Italicized reviews */
-    color: white; /* Lighter text for reviews */
-    font-size: 1.1rem; /* Slightly larger text for reviews */
-    margin-bottom: 15px; /* Space between reviews */
+    font-style: italic;
+    color: white;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
 }
 
-
-
-
-
-
 @media (min-width: 768px) {
+    .greeter {
+        height: 100vh;
+    }
 
+    .main-background {
+        background-position: center center;
+        background-size: cover;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        padding: 5vh 10vw;
+        height: 90%;
+    }
+
+    .main-header {
+        font-size: 4rem;
+        margin-top: 5vh;
+        margin-bottom: 5vh;
+    }
+
+    .main-subheader {
+        font-size: 2rem;
+        margin-bottom: 5vh;
+        text-align: left;
+    }
+
+    .feature-item {
+        font-size: 1.2rem;
+        margin: 15px 0;
+    }
+
+    .feature-item span {
+        display: contents;
+        font-weight: bold;
+    }
+
+    .signup-button {
+        width: 25vw;
+        font-size: 1.2rem;
+        padding: 15px 30px;
+    }
+
+    .section-title {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+    }
+
+    .section-content {
+        font-size: 1.3rem;
+        margin-bottom: 7vh;
+    }
+
+    .review-item {
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+    }
+
+    .faq-title {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+    }
+
+    .faq-container {
+        padding: 30px 50px;
+    }
+
+    .faq-question {
+        font-size: 1.2rem;
+    }
+
+    .faq-answer {
+        font-size: 1.1rem;
+    }
 }
