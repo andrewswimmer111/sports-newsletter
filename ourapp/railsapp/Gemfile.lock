@@ -1,9 +1,4 @@
 GEM
-  remote: http://adsweb-ci.oit.duke.edu/gems/
-  specs:
-    rack_authenticator (0.2.0)
-
-GEM
   remote: https://rubygems.org/
   specs:
     actioncable (7.0.5)
@@ -256,7 +251,6 @@ DEPENDENCIES
   pg (~> 1.1)
   puma (~> 5.0)
   rack-cors
-  rack_authenticator!
   rails (~> 7.0.5)
   redis (~> 5.0)
   redis-namespace
