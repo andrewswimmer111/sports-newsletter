@@ -1,0 +1,105 @@
+/* General styling for the toggle container */
+.user-teams-toggle {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+    gap: 20px;
+    background-color: #2B3035; /* Dark background */
+    color: #F9F9F9; /* Light text color for body */
+    width: 100%;
+}
+
+/* Heading for both modes */
+.user-teams-toggle__heading {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #FFF5C1; /* Light yellow for headings */
+}
+
+/* Styles for the team list when not editing */
+.user-teams-toggle__team-list {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.user-teams-toggle__team-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border: 1px solid #444; /* Darker border */
+    border-radius: 5px;
+    background-color: #212529; /* Dark background for each item */
+    transition: background-color 0.3s ease;
+}
+
+/* Button styling */
+.user-teams-toggle__button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #FFF5C1; /* Accent button color */
+    color: #2B3035; /* Dark text for the button */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    max-width: 200px;
+}
+
+.user-teams-toggle__button:hover {
+    background-color: #F7E382; /* Accent color on hover */
+}
+
+.user-teams-toggle__button:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(72, 184, 72, 0.5);
+}
+
+/* No teams message style */
+.user-teams-toggle__no-teams-message {
+    color: #F9F9F9; /* Light text color for no teams message */
+    text-align: center;
+}
+
+/* Error message style */
+.user-teams-toggle__message {
+    color: #F44336; /* Red for error messages */
+    margin-top: 10px;
+}
+
+/* Align buttons in edit mode */
+.user-teams-toggle__button-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    width: 100%;
+    max-width: 200px;
+}
+
+/* Adjust both sections to take equal size */
+.user-teams-toggle__team-list,
+.user-teams-toggle__edit-container {
+    width: 100%;
+    max-width: 400px; /* Ensure both sections have the same width */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Styling for the cancel button in editing mode */
+.cancel-button {
+    background-color: #F44336; /* Red for cancel button */
+    width: 100%;
+    max-width: 120px;
+    margin-top: -2vh;
+}
+
+.cancel-button:hover {
+    background-color: #e53935; /* Darker red on hover */
+}

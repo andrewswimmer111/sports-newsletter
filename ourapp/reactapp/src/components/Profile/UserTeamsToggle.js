@@ -1,30 +1,36 @@
 import React, { useContext, useState } from 'react';
 import { useUser } from '../contexts/UserContext';
+import { useNavigate } from 'react-router-dom';
+
+import './UserTeamsToggle.css';
+import TeamCheckbox from '../SportCard2/TeamCheckBox'; // Import the TeamCheckbox component
 
 export default function UserTeamsToggle({ followedTeams }) {
     const [isEditing, setIsEditing] = useState(false);
 
     return (
-        <div>
+        <div className="user-teams-toggle">
             {isEditing ? (
                 <>
-                    <h2>Edit Followed Teams</h2>
+                    <h2 className="user-teams-toggle__heading">Edit Followed Teams</h2>
                     <EditUserTeams followedTeams={followedTeams} />
-                    <button onClick={() => setIsEditing(false)}>Cancel</button>
+                    <button className="user-teams-toggle__button cancel-button" onClick={() => setIsEditing(false)}>Cancel</button>
                 </>
             ) : (
                 <>
-                    <h2>Followed Teams</h2>
+                    <h2 className="user-teams-toggle__heading">Followed Teams</h2>
                     {followedTeams && followedTeams.length > 0 ? (
-                        <ul>
-                            {followedTeams.map((team) => (
-                                <li key={team.id}>{team.name}</li>
-                            ))}
-                        </ul>
+                        <>
+                            <ul className="user-teams-toggle__team-list">
+                                {followedTeams.map((team) => (
+                                    <li key={team.id} className="user-teams-toggle__team-item">{team.name}</li>
+                                ))}
+                            </ul>
+                            <button className="user-teams-toggle__button" onClick={() => setIsEditing(true)}>Unfollow Teams</button>
+                        </>
                     ) : (
-                        <p>No teams followed</p>
+                        <p className="user-teams-toggle__no-teams-message">No teams followed</p>
                     )}
-                    <button onClick={() => setIsEditing(true)}>Unfollow Teams</button>
                 </>
             )}
         </div>
@@ -35,6 +41,7 @@ function EditUserTeams({ followedTeams }) {
     const { user } = useUser();
     const [selectedTeams, setSelectedTeams] = useState([]);
     const [message, setMessage] = useState('');
+    const navigate = useNavigate();
 
     const handleTeamSelection = (event) => {
         const teamId = event.target.value;
@@ -61,7 +68,7 @@ function EditUserTeams({ followedTeams }) {
             });
             if (response.ok) {
                 const confirmation = await response.json();
-                setMessage(confirmation.message);
+                navigate(0);
             } else {
                 const errorData = await response.json();
                 setMessage(errorData.error);
@@ -72,28 +79,21 @@ function EditUserTeams({ followedTeams }) {
     };
 
     return (
-        <div>
+        <div className="user-teams-toggle__edit-container">
             <p>Select teams to unfollow:</p>
             {followedTeams && followedTeams.length > 0 ? (
                 <>
-                    {followedTeams.map((team) => (
-                        <li key={team.id} style={{ listStyleType: 'none', display: 'flex', alignItems: 'center' }}>
-                            <label style={{ display: 'flex', alignItems: 'center' }}>
-                                <input
-                                    type="checkbox"
-                                    value={team.id}
-                                    onChange={handleTeamSelection}
-                                    style={{ marginRight: '10px' }}
-                                />
-                                {team.name}
-                            </label>
-                        </li>
-                    ))}
-                    <button onClick={handleUnfollowTeamSubmit}>Unfollow Teams</button>
-                    <div>{message}</div>
+                        {followedTeams.map((team) => (
+                            <TeamCheckbox
+                                team={team}
+                                onChange={handleTeamSelection}
+                            />
+                        ))}
+                    <button className="user-teams-toggle__button" onClick={handleUnfollowTeamSubmit}>Confirm unfollow</button>
+                    <div className="user-teams-toggle__message">{message}</div>
                 </>
             ) : (
-                <div>Currently no followed teams</div>
+                <div className="user-teams-toggle__no-teams-message">Currently no followed teams</div>
             )}
         </div>
     );    
