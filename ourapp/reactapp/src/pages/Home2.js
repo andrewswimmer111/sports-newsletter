@@ -1,4 +1,5 @@
 import Banner2 from "../components/Banner2/Banner2";
+import { useUser } from "../components/contexts/UserContext";
 import FAQ from "../components/FAQ/FAQ";
 import "./Home2.css";
 
@@ -8,12 +9,22 @@ import { useNavigate } from 'react-router-dom';
 export default function Home() {
 
     const navigate = useNavigate();
+    const { user } = useUser()
+
+    const handleLoginCLick = () => {
+        if (user) {
+            navigate('/sports');
+        }
+        else {
+            navigate('/auth?form=login')
+        }
+    }   
     
     return (
         <>
             <div className="greeter">
                 <Banner2>
-                        <button onClick = {() => navigate('/auth?form=login')}>  Log in</button>
+                        <button onClick = {handleLoginCLick}>  Log in</button>
                 </Banner2>
                 <main className="main-background">
                     <div className="main-header"> Custom Sports Newsletter</div>
