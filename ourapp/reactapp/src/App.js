@@ -8,6 +8,7 @@ import UserProfile from "./components/UserProfile";
 import { UserProvider } from "./components/contexts/UserContext";
 
 import './App.css'
+import Sports from "./pages/Sports";
 
 function App() {
   return (
@@ -16,7 +17,11 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Home2 />} />
-          <Route path="/login" element={<Auth />} />
+          <Route path="/auth" element={<Auth />} />
+          <Route path="/sports" element={<Sports />} />
+
+          
+          <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/profile" element={<UserProfile />} /> 
         </Routes>

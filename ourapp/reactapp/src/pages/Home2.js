@@ -2,14 +2,18 @@ import Banner2 from "../components/Banner2/Banner2";
 import FAQ from "../components/FAQ/FAQ";
 import "./Home2.css";
 
+import { useNavigate } from 'react-router-dom';
+
 
 export default function Home() {
+
+    const navigate = useNavigate();
     
     return (
         <>
             <div className="greeter">
                 <Banner2>
-                        <button> Log in</button>
+                        <button onClick = {() => navigate('/auth')}>  Log in</button>
                 </Banner2>
                 <main className="main-background">
                     <div className="main-header"> Custom Sports Newsletter</div>
@@ -29,7 +33,7 @@ export default function Home() {
                             <span>🎯 Focus on What Matters:</span> Receive only the news you care about.
                         </span>
                     </div>
-                    <button className="signup-button"> Sign up today! </button>
+                    <button onClick = {() => navigate('/auth')} className="signup-button"> Sign up today! </button>
                 </main>
             </div>
 
