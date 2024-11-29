@@ -19,7 +19,6 @@ function App() {
           <Route path="/" element={<Home2 />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/sports" element={<Sports />} />
-
           
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
