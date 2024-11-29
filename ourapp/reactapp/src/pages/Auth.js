@@ -1,17 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Auth.css'; 
 import AuthToggle from '../components/Auth/AuthToggle';
 import Banner2 from "../components/Banner2/Banner2";
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 export default function Auth() {
-  const [isLogin, setIsLogin] = useState(true);
+  const [isLogin, setIsLogin] = useState(false);
 
   const navigate = useNavigate();
+  const location = useLocation();
 
-  const toggleForm = () => {
-    setIsLogin(!isLogin);
-  };
+  useEffect(() => {
+    // Get the 'form' query parameter from the URL
+    const queryParams = new URLSearchParams(location.search);
+    const formType = queryParams.get('form');
+    if (formType === 'login') {
+      setIsLogin(true);
+    }
+    else {
+      setIsLogin(false);
+    }
+  }, [location]);
 
   return (
     <>
@@ -19,7 +28,7 @@ export default function Auth() {
         <button onClick = {() => navigate('/')}> Home </button>
       </Banner2>
       <main className='auth-main'>
-        <AuthToggle></AuthToggle>
+        <AuthToggle isLogin={isLogin}/>
       </main>
     </>
   );

@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { UserContext } from '../contexts/UserContext';
 import './AuthComponents.css';  // Import shared CSS
+import { useNavigate } from 'react-router-dom';
 
 export default function Login2() {
   const [email, setEmail] = useState('');
@@ -8,6 +9,7 @@ export default function Login2() {
   const [loginStatus, setLoginStatus] = useState('');
 
   const { setUser } = useContext(UserContext);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();

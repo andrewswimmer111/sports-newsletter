@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Register from './Register2';
 import Login from './Login2';
 
-export default function AuthToggle() {
-  const [isRegistering, setIsRegistering] = useState(false);
+export default function AuthToggle( {isLogin} ) {
+  const [isRegistering, setIsRegistering] = useState(!isLogin);
+
+  useEffect(() => {
+    setIsRegistering(!isLogin);
+  }, [isLogin]);
 
   return (
     <div className='auth-container'>

@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { UserContext } from '../contexts/UserContext';
 import './AuthComponents.css';  
+import { useNavigate } from 'react-router-dom';
 
 export default function Register2() {
   const [firstName, setFirstName] = useState('');
@@ -9,6 +10,8 @@ export default function Register2() {
   const [password, setPassword] = useState('');
   const [registerStatus, setRegisterStatus] = useState('');
   const { setUser } = useContext(UserContext);
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();

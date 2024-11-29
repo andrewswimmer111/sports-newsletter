@@ -13,7 +13,7 @@ export default function Home() {
         <>
             <div className="greeter">
                 <Banner2>
-                        <button onClick = {() => navigate('/auth')}>  Log in</button>
+                        <button onClick = {() => navigate('/auth?form=login')}>  Log in</button>
                 </Banner2>
                 <main className="main-background">
                     <div className="main-header"> Custom Sports Newsletter</div>
@@ -33,7 +33,7 @@ export default function Home() {
                             <span>🎯 Focus on What Matters:</span> Receive only the news you care about.
                         </span>
                     </div>
-                    <button onClick = {() => navigate('/auth')} className="signup-button"> Sign up today! </button>
+                    <button onClick = {() => navigate('/auth?form=signup')} className="signup-button"> Sign up today! </button>
                 </main>
             </div>
 
