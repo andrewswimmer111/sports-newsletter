@@ -12,6 +12,7 @@ export default function TeamCheckbox({ team, onChange }) {
         borderRadius: '5px',
         marginBottom: '8px',
         cursor: 'pointer',
+        minWidth: '15vw'
       }}
     >
       <input 

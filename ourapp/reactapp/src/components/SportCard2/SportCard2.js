@@ -26,6 +26,7 @@ export default function SportCard2() {
 
   const handleLeagueChange = (league) => {
     setSelectedLeague(league);
+    setMessage("");
   };
 
   const handleTeamSelection = (event) => {

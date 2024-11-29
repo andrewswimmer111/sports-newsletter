@@ -10,6 +10,7 @@
     cursor: pointer;
     transition: all 0.3s ease;
     background-color: #f9f9f9;
+    color: black;
   }
   
   .league-checkbox img {
@@ -35,5 +36,30 @@
     font-size: 14px;
     font-weight: bold;
     text-align: center;
-  }
+}
   
+@media (min-width: 768px) {
+    .league-checkbox {
+        width: 150px; /* Increase the size for web */
+        height: 150px; /* Match width for a square layout */
+        border: 3px solid #ccc; /* Thicker border for emphasis */
+        border-radius: 12px; /* Slightly rounder corners */
+        font-size: 16px; /* Slightly larger font for better readability */
+        transition: all 0.3s ease; /* Smooth transition remains */
+    }
+
+    .league-checkbox img {
+        width: 70px; /* Larger image size */
+        height: 70px; /* Match width */
+        margin-bottom: 12px; /* Increase spacing between image and text */
+    }
+
+    .league-checkbox.selected {
+        border-color: #007bff;
+        background-color: #d6f4ff; /* Subtle change for a larger visual area */
+    }
+
+    .league-name {
+        font-size: 16px; /* Adjust font size to match larger checkbox */
+    }
+}

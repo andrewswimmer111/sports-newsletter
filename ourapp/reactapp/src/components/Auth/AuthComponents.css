@@ -55,6 +55,7 @@
 .auth-form-container h2 {
   font-size: 24px;
   margin-bottom: 16px;
+  margin-left: 0;
   color: #FFF5C1; /* Light yellow for headings */
 }
 
