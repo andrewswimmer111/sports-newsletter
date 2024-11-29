@@ -13,19 +13,24 @@ export default function Register2() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      console.log(JSON.stringify({ name: firstName + ' ' + lastName, email, password }))
       const response = await fetch('http://localhost:3000/users/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: firstName + ' ' + lastName, email, password }),
+        body: JSON.stringify({ 
+          name: firstName + ' ' + lastName, 
+          email, 
+          password 
+        }),
       });
 
       if (response.ok) {
         const data = await response.json();
         setUser(data.user);
-        // Redirect to home page or wherever needed
+        navigate('/sports');
       } else {
         const errorData = await response.json();
-        setRegisterStatus(errorData.error || 'Registration failed');
+        setRegisterStatus(errorData.error || 'Sorry, registration failed');
       }
     } catch (error) {
       setRegisterStatus(error.message);
@@ -35,7 +40,7 @@ export default function Register2() {
   return (
     <div className="auth-form-container">
       <h2>Sign Up</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className='form'>
         <input type="text" placeholder="First Name" value={firstName} onChange={(e) => setFirstName(e.target.value)} required />
         <input type="text" placeholder="Last Name" value={lastName} onChange={(e) => setLastName(e.target.value)} required />
         <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />

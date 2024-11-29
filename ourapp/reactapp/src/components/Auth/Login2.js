@@ -5,6 +5,8 @@ import './AuthComponents.css';  // Import shared CSS
 export default function Login2() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loginStatus, setLoginStatus] = useState('');
+
   const { setUser } = useContext(UserContext);
 
   const handleSubmit = async (e) => {
@@ -19,24 +21,27 @@ export default function Login2() {
       if (response.ok) {
         const data = await response.json();
         setUser(data.user);
+        navigate('/sports');
         // Redirect to home page or wherever needed
       } else {
         const errorData = await response.json();
-        console.error('Login failed:', errorData.error || 'Unknown error');
+        setLoginStatus(errorData.error || 'Sorry, login failed');
+
       }
     } catch (error) {
-      console.error('Error logging in:', error);
+      setLoginStatus(error.message);
     }
   };
 
   return (
     <div className="auth-form-container">
       <h2>Log In</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className='form'>
         <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
         <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
         <button type="submit">Login</button>
       </form>
+      {loginStatus && <div className="status">{loginStatus}</div>}
     </div>
   );
 }
