@@ -4,7 +4,7 @@ main {
     padding: 20px;
     padding-bottom: 40px;
     align-items: center;
-    background-color: #212529; /* Dark background for the main container */
+    background-color: #343a40; /* Dark background for the main container */
     color: #F9F9F9; /* Light text color for contrast */
     min-height: 90vh;
 }

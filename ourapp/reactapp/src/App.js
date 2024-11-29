@@ -9,6 +9,7 @@ import { UserProvider } from "./components/contexts/UserContext";
 
 import './App.css'
 import Sports from "./pages/Sports";
+import Profile from "./pages/Profile";
 
 function App() {
   return (
@@ -19,10 +20,11 @@ function App() {
           <Route path="/" element={<Home2 />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/sports" element={<Sports />} />
+          <Route path="/profile" element={<Profile />} />
           
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/profile" element={<UserProfile />} /> 
+          <Route path="/profile2" element={<UserProfile />} /> 
         </Routes>
       </Router>
     </UserProvider>
