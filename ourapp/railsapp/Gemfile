@@ -30,7 +30,7 @@ gem "redis", "~> 5.0"
 
 gem "redis-namespace"
 
-gem "rack_authenticator", source: "http://adsweb-ci.oit.duke.edu/gems/"
+# gem "rack_authenticator", source: "http://adsweb-ci.oit.duke.edu/gems/"
 
 gem "argon2", "~> 2.3"
 

@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+    wrap_parameters format: []
+
     # Register action
     def register
         user = User.new(user_params)
@@ -41,5 +43,4 @@ class SessionsController < ApplicationController
     def user_params
         params.permit(:name, :email, :password, :password_confirmation)
     end
-
-  end
+end

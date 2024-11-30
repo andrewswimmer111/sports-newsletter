@@ -1,4 +1,4 @@
-.teamList {
-    height: fit-content;
-    color: black;
+* {
+    box-sizing: border-box; /* Makes styling math add up */
+    font-family: Arial, sans-serif; /* Set a default font */
 }
