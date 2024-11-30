@@ -38,7 +38,7 @@
     border-radius: 5px;
     background-color: #212529; /* Dark background for each item */
     transition: background-color 0.3s ease;
-    width: 250px;
+    width: 200px;
 }
 
 /* Button styling */
@@ -51,7 +51,6 @@
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    width: 100%;
     max-width: 200px;
     margin-top: 2vh;
 }
@@ -82,8 +81,7 @@
     display: flex;
     justify-content: space-between;
     gap: 10px;
-    width: 100%;
-    max-width: 200px;
+    width: 200px;
 }
 
 /* Adjust both sections to take equal size */
@@ -165,7 +163,7 @@
         border-radius: 5px;
         font-size: 1rem;
         cursor: pointer;
-        max-width: 250px;
+        width: 200px;
     }
 
     .user-teams-toggle__button:hover {

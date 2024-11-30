@@ -5,8 +5,39 @@ import { useNavigate } from 'react-router-dom';
 
 export default function UserInfoToggle() {
     const navigate = useNavigate();
-    const { user } = useUser();
+    const { user, setUser } = useUser();
     const [isEditing, setIsEditing] = useState(false);
+    const [message, setMessage] = useState("")
+
+    const handleDelete = async () => {
+
+        const confirmation = window.confirm("Are you sure you want to delete your account? This action cannot be undone. If you continue, your account will be deleted and you will be redirected to the homepage.");
+  
+        if (!confirmation) {
+            return; // Exit if the user cancels
+        }
+
+        try {
+          const response = await fetch(`http://localhost:3000/users/${user.id}`, {
+            method: 'DELETE',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          });
+      
+          if (response.ok) {
+            const data = await response.json();
+            setUser(null);
+            navigate("/");
+          } else {
+            const errorData = await response.json();
+            setMessage(errorData.error);  // Show the error message
+          }
+        } catch (error) {
+          console.log(error);
+          setMessage('An error occurred');
+        }
+    };
 
     return (
         <div className="user-info-toggle">
@@ -28,12 +59,21 @@ export default function UserInfoToggle() {
                         <p className="user-info-toggle__info-item">Name: {user.name}</p>
                         <p className="user-info-toggle__info-item">Email: {user.email}</p>
                     </div>
-                    <button
-                        className="user-info-toggle__button"
-                        onClick={() => setIsEditing(true)}
-                    >
-                        Edit Info
-                    </button>
+                    <div className='buttons'>
+                        <button
+                            className="user-info-toggle__button"
+                            onClick={() => setIsEditing(true)}
+                        >
+                            Edit Info
+                        </button>
+                        <button 
+                            className="user-info-toggle__button delete"
+                            onClick={handleDelete}
+                        >
+                            Delete Account
+                        </button>
+                    </div>
+                    {message && <div className="user-info-toggle__message">{message}</div>}
                 </>
             )}
         </div>

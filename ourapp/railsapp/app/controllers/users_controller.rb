@@ -80,6 +80,21 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    @user = User.find_by(id: params[:id])
+    
+    if @user
+            
+      if @user.destroy
+        render json: { message: 'User account deleted successfully' }, status: :ok
+      else
+        render json: { error: 'Failed to delete account' }, status: :unprocessable_entity
+      end
+    else
+      render json: { error: 'User not found' }, status: :not_found
+    end
+  end
+
   private
   
 

@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+    wrap_parameters format: []
+
     # Register action
     def register
         user = User.new(user_params)
