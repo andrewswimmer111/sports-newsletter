@@ -101,7 +101,7 @@ function EditUserTeams({ followedTeamsMap }) {
 
     return (
         <div className="user-teams-toggle__edit-container">
-            <p>Select teams to unfollow:</p>
+            <p className='skibidi'>Select teams to unfollow:</p>
             {followedTeamsMap && Object.keys(followedTeamsMap).length > 0 ? (
                 <>
                     {Object.entries(followedTeamsMap).map(([league, teams]) => (
@@ -111,7 +111,7 @@ function EditUserTeams({ followedTeamsMap }) {
                                 {teams.map((team) => (
                                     <li key={team.id} className="user-teams-toggle__team-item">
                                         <label>
-                                            <input
+                                            <input style={{marginRight: '15px'}}
                                                 type="checkbox"
                                                 value={team.id}
                                                 onChange={handleTeamSelection}
@@ -123,7 +123,7 @@ function EditUserTeams({ followedTeamsMap }) {
                             </ul>
                         </div>
                     ))}
-                    <button className="user-teams-toggle__button" onClick={handleUnfollowTeamSubmit}>
+                    <button className="user-teams-toggle__button skbidi" onClick={handleUnfollowTeamSubmit}>
                         Confirm unfollow
                     </button>
                     <div className="user-teams-toggle__message">{message}</div>

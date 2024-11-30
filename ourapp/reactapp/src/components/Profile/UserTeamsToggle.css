@@ -38,7 +38,7 @@
     border-radius: 5px;
     background-color: #212529; /* Dark background for each item */
     transition: background-color 0.3s ease;
-    min-width: 222px;
+    width: 222px;
 }
 
 /* Button styling */
@@ -53,6 +53,7 @@
     transition: background-color 0.3s ease;
     width: 100%;
     max-width: 200px;
+    margin-top: 2vh;
 }
 
 .user-teams-toggle__button:hover {
@@ -89,7 +90,6 @@
 .user-teams-toggle__team-list,
 .user-teams-toggle__edit-container {
     width: 100%;
-    max-width: 400px; /* Ensure both sections have the same width */
     margin-left: auto;
     margin-right: auto;
 }
@@ -105,3 +105,121 @@
 .cancel-button:hover {
     background-color: #e53935; /* Darker red on hover */
 }
+
+
+@media (min-width: 768px) {
+    /* Ensure the toggle container is still vertically aligned */
+    .user-teams-toggle {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    /* Grid styling for league sections */
+    .user-teams-toggle__league-section {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        flex: 1;
+        margin-bottom: 20px; /* Add some space between leagues */
+        width: 100%;
+    }
+
+    /* League header styling */
+    .user-teams-toggle__league-heading {
+        font-size: 1.2rem;
+        color: #FFF5C1;
+        margin-bottom: 10px;
+        margin-top: 0;
+    }
+
+    /* Grid layout for the team list */
+    .user-teams-toggle__team-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(222px, 1fr)); /* Responsive grid for teams */
+        gap: 15px;
+        padding: 0;
+        margin: 0;
+        list-style-type: none;
+    }
+
+    /* Styling for individual team items (checkboxes) */
+    .user-teams-toggle__team-item {
+        display: flex;
+        align-items: center;
+        font-size: 1rem;
+        color: #FFF5C1;
+        gap: 15px;
+    }
+
+    /* Styling for the checkbox */
+    .user-teams-toggle__team-item input[type="checkbox"] {
+        margin-right: 10px;
+    }
+
+    /* Button styling */
+    .user-teams-toggle__button {
+        background-color: #FFF5C1;
+        color: black;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 1rem;
+        cursor: pointer;
+        max-width: 250px;
+    }
+
+    .user-teams-toggle__button:hover {
+        background-color: #F7E382;
+    }
+
+    /* Styling for the message after submitting */
+    .user-teams-toggle__message {
+        color: #6c757d;
+        font-size: 0.9rem;
+        margin-top: 15px;
+    }
+
+    /* Styling for the no-teams message */
+    .user-teams-toggle__no-teams-message {
+        color: #adb5bd;
+        font-size: 1.1rem;
+        font-weight: bold;
+        margin-top: 20px;
+    }
+
+    /* Container for edit mode */
+    .user-teams-toggle__edit-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 20px; /* Add space between the sections */
+        padding: 20px;
+        background-color: #343a40;
+        border-radius: 8px;
+        padding-bottom: 0;
+    }
+
+    .skibidi {
+        margin-bottom: 0;
+    }
+
+    /* Style for the confirmation message */
+    .user-teams-toggle__message {
+        font-size: 1rem;
+        color: #28a745; /* Green for success message */
+        margin-top: 15px;
+    }
+
+    /* Styling for the cancel button in editing mode */
+    .cancel-button {
+        background-color: #F44336; /* Red for cancel button */
+        width: 100%;
+        max-width: 120px;
+        margin-top: -1vh;
+    }
+
+    .cancel-button:hover {
+        background-color: #e53935; /* Darker red on hover */
+    }
+}
+
