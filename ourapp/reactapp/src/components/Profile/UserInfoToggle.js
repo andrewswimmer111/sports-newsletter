@@ -123,7 +123,7 @@ function EditUserProfile() {
                 <input
                     type="email"
                     name="email"
-                    value={formInfo.email}
+                    value={formInfo.email.toLowerCase()}
                     onChange={handleChange}
                 />
             </label>
