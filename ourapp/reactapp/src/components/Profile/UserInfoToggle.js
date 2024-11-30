@@ -1,8 +1,10 @@
 import React, { useContext, useState } from 'react';
 import { useUser } from '../contexts/UserContext';
 import './UserInfoToggle.css';
+import { useNavigate } from 'react-router-dom';
 
 export default function UserInfoToggle() {
+    const navigate = useNavigate();
     const { user } = useUser();
     const [isEditing, setIsEditing] = useState(false);
 
@@ -49,6 +51,8 @@ function EditUserProfile() {
     });
     const [message, setMessage] = useState('');
 
+    const navigate = useNavigate();
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormInfo((prevFormInfo) => ({
@@ -62,23 +66,42 @@ function EditUserProfile() {
         if (formInfo.confirmPassword !== formInfo.newPassword) {
             setMessage('Failed, passwords do not match');
         } else {
+            console.log(JSON.stringify(formInfo))
             try {
                 const response = await fetch(`http://localhost:3000/users/${user.id}`, {
                     method: 'PATCH',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify(formInfo),
+                    body: JSON.stringify({
+                        user: {
+                            id: user.id,
+                            name: formInfo.name,
+                            email: formInfo.email,
+                            newPassword: formInfo.newPassword,
+                            confirmPassword: formInfo.confirmPassword,
+                            currentPassword: formInfo.currentPassword,
+                        }
+                    }),
                 });
+
                 if (response.ok) {
                     const updatedUser = await response.json();
-                    setMessage(`${updatedUser.message}, refresh to see updates`);
+                    navigate(0);
+                    console.log('success');
                     localStorage.setItem('user', JSON.stringify(updatedUser.user));
                 } else {
                     const errorData = await response.json();
-                    setMessage(errorData.error);
+                    console.log('Error:', errorData);
+                    // Check if errors exist in the response
+                    if (errorData.errors) {
+                        setMessage(errorData.errors.join(", "));
+                    } else {
+                        setMessage('An error occurred');
+                    }
                 }
             } catch (error) {
+                console.log(error);
                 setMessage('An error occurred');
             }
         }

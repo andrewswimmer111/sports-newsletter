@@ -38,7 +38,7 @@
     border-radius: 5px;
     background-color: #212529; /* Dark background for each item */
     transition: background-color 0.3s ease;
-    width: 222px;
+    width: 250px;
 }
 
 /* Button styling */
@@ -135,7 +135,7 @@
     /* Grid layout for the team list */
     .user-teams-toggle__team-list {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(222px, 1fr)); /* Responsive grid for teams */
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsive grid for teams */
         gap: 15px;
         padding: 0;
         margin: 0;
