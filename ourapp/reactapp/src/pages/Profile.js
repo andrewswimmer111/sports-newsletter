@@ -9,7 +9,7 @@ import './Profile.css'
 
 export default function Profile() {
 
-    const [teams, setTeams] = useState([]);
+    const [teams, setTeams] = useState({});
     const { user, setUser } = useUser();
     const navigate = useNavigate();
 
@@ -17,10 +17,22 @@ export default function Profile() {
         if (user) {
           fetch(`http://localhost:3000/users/${user.id}/get_teams`)
                 .then(response => response.json())
-                .then(data => setTeams(data.teams))
+                .then(data => setTeams(groupTeamsByLeague(data.teams)))
                 .catch(error => console.error('Error fetching teams:', error));
         }
     }, [user]);
+
+    function groupTeamsByLeague(teams) {
+        return teams.reduce((leagueMap, team) => {
+            console.log(team.league)
+            const league = team.league;
+            if (!leagueMap[league]) {
+                leagueMap[league] = [];
+            }
+            leagueMap[league].push(team);
+            return leagueMap;
+        }, {});
+    }
 
     const signOut = async () => {
         try {
@@ -51,7 +63,7 @@ export default function Profile() {
             </Banner2>
             <main>
                 <UserInfoToggle></UserInfoToggle>
-                <UserTeamsToggle followedTeams={teams} />
+                <UserTeamsToggle followedTeamsMap={teams} />
             </main>
         </>
     )

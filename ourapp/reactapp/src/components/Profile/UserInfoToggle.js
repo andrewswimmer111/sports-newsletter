@@ -1,24 +1,37 @@
 import React, { useContext, useState } from 'react';
 import { useUser } from '../contexts/UserContext';
+import './UserInfoToggle.css';
 
 export default function UserInfoToggle() {
     const { user } = useUser();
     const [isEditing, setIsEditing] = useState(false);
 
     return (
-        <div>
+        <div className="user-info-toggle">
             {isEditing ? (
                 <>
-                    <h2>Edit User Info</h2>
+                    <h2 className="user-info-toggle__heading">Edit User Info</h2>
                     <EditUserProfile />
-                    <button onClick={() => setIsEditing(false)}>Cancel</button>
+                    <button
+                        className="user-info-toggle__button cancel-button"
+                        onClick={() => setIsEditing(false)}
+                    >
+                        Cancel
+                    </button>
                 </>
             ) : (
                 <>
-                    <h2>User Info</h2>
-                    <p>Name: {user.name}</p>
-                    <p>Email: {user.email}</p>
-                    <button onClick={() => setIsEditing(true)}>Edit Info</button>
+                    <h2 className="user-info-toggle__heading">User Info</h2>
+                    <div className="user-info-toggle__info">
+                        <p className="user-info-toggle__info-item">Name: {user.name}</p>
+                        <p className="user-info-toggle__info-item">Email: {user.email}</p>
+                    </div>
+                    <button
+                        className="user-info-toggle__button"
+                        onClick={() => setIsEditing(true)}
+                    >
+                        Edit Info
+                    </button>
                 </>
             )}
         </div>
@@ -72,29 +85,56 @@ function EditUserProfile() {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form className="user-info-toggle__form" onSubmit={handleSubmit}>
             <label>
                 Name:
-                <input type="text" name="name" value={formInfo.name} onChange={handleChange} />
+                <input
+                    type="text"
+                    name="name"
+                    value={formInfo.name}
+                    onChange={handleChange}
+                />
             </label>
             <label>
                 Email:
-                <input type="email" name="email" value={formInfo.email} onChange={handleChange} />
+                <input
+                    type="email"
+                    name="email"
+                    value={formInfo.email}
+                    onChange={handleChange}
+                />
             </label>
             <label>
                 New Password:
-                <input type="password" name="newPassword" value={formInfo.newPassword} onChange={handleChange} />
+                <input
+                    type="password"
+                    name="newPassword"
+                    value={formInfo.newPassword}
+                    onChange={handleChange}
+                />
             </label>
             <label>
                 Confirm New Password:
-                <input type="password" name="confirmPassword" value={formInfo.confirmPassword} onChange={handleChange} />
+                <input
+                    type="password"
+                    name="confirmPassword"
+                    value={formInfo.confirmPassword}
+                    onChange={handleChange}
+                />
             </label>
             <label>
                 Current Password:
-                <input type="password" name="currentPassword" value={formInfo.currentPassword} onChange={handleChange} />
+                <input
+                    type="password"
+                    name="currentPassword"
+                    value={formInfo.currentPassword}
+                    onChange={handleChange}
+                />
             </label>
-            <button type="submit">Submit Changes</button>
-            <div>{message}</div>
+            <button className="user-info-toggle__button" type="submit">
+                Submit Changes
+            </button>
+            {message && <div className="user-info-toggle__message">{message}</div>}
         </form>
     );
 }

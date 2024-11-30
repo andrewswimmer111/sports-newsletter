@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import './UserTeamsToggle.css';
 import TeamCheckbox from '../SportCard2/TeamCheckBox'; // Import the TeamCheckbox component
 
-export default function UserTeamsToggle({ followedTeams }) {
+export default function UserTeamsToggle({ followedTeamsMap }) {
     const [isEditing, setIsEditing] = useState(false);
 
     return (
@@ -13,20 +13,40 @@ export default function UserTeamsToggle({ followedTeams }) {
             {isEditing ? (
                 <>
                     <h2 className="user-teams-toggle__heading">Edit Followed Teams</h2>
-                    <EditUserTeams followedTeams={followedTeams} />
-                    <button className="user-teams-toggle__button cancel-button" onClick={() => setIsEditing(false)}>Cancel</button>
+                    <EditUserTeams followedTeamsMap={followedTeamsMap} />
+                    <button
+                        className="user-teams-toggle__button cancel-button"
+                        onClick={() => setIsEditing(false)}
+                    >
+                        Cancel
+                    </button>
                 </>
             ) : (
                 <>
                     <h2 className="user-teams-toggle__heading">Followed Teams</h2>
-                    {followedTeams && followedTeams.length > 0 ? (
+                    {followedTeamsMap && Object.keys(followedTeamsMap).length > 0 ? (
                         <>
-                            <ul className="user-teams-toggle__team-list">
-                                {followedTeams.map((team) => (
-                                    <li key={team.id} className="user-teams-toggle__team-item">{team.name}</li>
-                                ))}
-                            </ul>
-                            <button className="user-teams-toggle__button" onClick={() => setIsEditing(true)}>Unfollow Teams</button>
+                            {Object.entries(followedTeamsMap).map(([league, teams]) => (
+                                <div key={league} className="user-teams-toggle__league-section">
+                                    <h3 className="user-teams-toggle__league-header">{league}</h3>
+                                    <ul className="user-teams-toggle__team-list">
+                                        {teams.map((team) => (
+                                            <li
+                                                key={team.id}
+                                                className="user-teams-toggle__team-item"
+                                            >
+                                                {team.name}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            ))}
+                            <button
+                                className="user-teams-toggle__button"
+                                onClick={() => setIsEditing(true)}
+                            >
+                                Unfollow Teams
+                            </button>
                         </>
                     ) : (
                         <p className="user-teams-toggle__no-teams-message">No teams followed</p>
@@ -37,7 +57,8 @@ export default function UserTeamsToggle({ followedTeams }) {
     );
 }
 
-function EditUserTeams({ followedTeams }) {
+
+function EditUserTeams({ followedTeamsMap }) {
     const { user } = useUser();
     const [selectedTeams, setSelectedTeams] = useState([]);
     const [message, setMessage] = useState('');
@@ -68,7 +89,7 @@ function EditUserTeams({ followedTeams }) {
             });
             if (response.ok) {
                 const confirmation = await response.json();
-                navigate(0);
+                navigate(0); // Refresh the page
             } else {
                 const errorData = await response.json();
                 setMessage(errorData.error);
@@ -81,20 +102,35 @@ function EditUserTeams({ followedTeams }) {
     return (
         <div className="user-teams-toggle__edit-container">
             <p>Select teams to unfollow:</p>
-            {followedTeams && followedTeams.length > 0 ? (
+            {followedTeamsMap && Object.keys(followedTeamsMap).length > 0 ? (
                 <>
-                        {followedTeams.map((team) => (
-                            <TeamCheckbox
-                                team={team}
-                                onChange={handleTeamSelection}
-                            />
-                        ))}
-                    <button className="user-teams-toggle__button" onClick={handleUnfollowTeamSubmit}>Confirm unfollow</button>
+                    {Object.entries(followedTeamsMap).map(([league, teams]) => (
+                        <div key={league} className="user-teams-toggle__league-section">
+                            <h3 className="user-teams-toggle__league-heading">{league}</h3>
+                            <ul className="user-teams-toggle__team-list">
+                                {teams.map((team) => (
+                                    <li key={team.id} className="user-teams-toggle__team-item">
+                                        <label>
+                                            <input
+                                                type="checkbox"
+                                                value={team.id}
+                                                onChange={handleTeamSelection}
+                                            />
+                                            {team.name}
+                                        </label>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    ))}
+                    <button className="user-teams-toggle__button" onClick={handleUnfollowTeamSubmit}>
+                        Confirm unfollow
+                    </button>
                     <div className="user-teams-toggle__message">{message}</div>
                 </>
             ) : (
                 <div className="user-teams-toggle__no-teams-message">Currently no followed teams</div>
             )}
         </div>
-    );    
+    );
 }
