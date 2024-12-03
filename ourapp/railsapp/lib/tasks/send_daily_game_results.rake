@@ -14,11 +14,13 @@ namespace :send_daily_game_results do
       nba_format_service = DataFormatService.new("NBA")
       formatted_nba_data = nba_format_service.format_and_cache(nba_data)
   
-      users = User.includes(:teams).all
+      # Filter users to only include a test user
+      test_user = User.find_by(email: 'andy.chen@duke.edu')
+      users = [test_user]
   
       users.each do |user|
-        filtered_nfl_data = filter_game_data_for_user(user, formatted_nfl_data)
-        filtered_nba_data = filter_game_data_for_user(user, formatted_nba_data)
+        filtered_nfl_data = filter_game_data_for_user(user, formatted_nfl_data || [])
+        filtered_nba_data = filter_game_data_for_user(user, formatted_nba_data || [])
         email_content = build_email_content(user, filtered_nfl_data + filtered_nba_data)
         
         UserMailer.with(user: user, content: email_content).game_results_email.deliver_now
