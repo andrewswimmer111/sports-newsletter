@@ -6,16 +6,17 @@ class DataFormatService
   end
 
   def format_and_cache(raw_data)
+    formatted_data = []
 
-    if (@league == "NFL")
+    if @league == "NFL"
       formatted_data = format_NFL_data(raw_data)
-    elsif (@league == "NBA")
+    elsif @league == "NBA"
       formatted_data = format_NBA_data(raw_data)
     end
 
     @cache_service.add_match_data(formatted_data)
+    formatted_data # Ensure the method returns the formatted data
   end
-
 
   private
 
@@ -23,7 +24,6 @@ class DataFormatService
     formatted_data = []
 
     data['response'].map do |game_data|
-
       api_hometeam_id = game_data['teams']['home']['id']
       ourapp_hometeam_id = Team.where(api_id: api_hometeam_id, league: "NFL").first
 
@@ -31,8 +31,8 @@ class DataFormatService
       ourapp_awayteam_id = Team.where(api_id: api_awayteam_id, league: "NFL").first
 
       match_data = {
-        league: @league,                    
-        date: game_data['game']['date']['date'],              # exmaple format "2022-09-30"
+        league: @league,
+        date: game_data['game']['date']['date'], # example format "2022-09-30"
         team1: {
           team_id: ourapp_hometeam_id,
           team_name: game_data['teams']['home']['name'],
@@ -65,7 +65,6 @@ class DataFormatService
     formatted_data = []
 
     data['response'].map do |game_data|
-      
       api_hometeam_id = game_data['teams']['home']['id']
       ourapp_hometeam_id = Team.where(api_id: api_hometeam_id, league: "NBA").first
 
@@ -73,8 +72,8 @@ class DataFormatService
       ourapp_awayteam_id = Team.where(api_id: api_awayteam_id, league: "NBA").first
 
       match_data = {
-        league: @league,                    
-        date: game_data['date']['start'],              # exmaple format "2022-03-09T00:00:00.000Z"
+        league: @league,
+        date: game_data['date']['start'], # example format "2022-03-09T00:00:00.000Z"
         team1: {
           team_id: ourapp_hometeam_id,
           team_name: game_data['teams']['home']['name'],
@@ -103,33 +102,3 @@ class DataFormatService
     formatted_data
   end
 end
-
-# FORMATTED DATA
-# {
-#   league: ,
-#   date: ,
-#   teams: [
-#     { 
-#     team_id:,
-#     team_name:,
-#     team_score: {
-#       q1:,
-#       q2:,
-#       q3:,
-#       q4:,
-#       final:,
-#     },
-#   },
-#   { 
-#     team_id:,
-#     team_name:,
-#     team_score: {
-#       q1:,
-#       q2:,
-#       q3:,
-#       q4:,
-#       final:,
-#     },
-#   },
-#   ]
-# }

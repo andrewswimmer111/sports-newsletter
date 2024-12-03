@@ -26,7 +26,7 @@ namespace :send_daily_game_results do
     formatted_nba_data = formatted_nba_data.is_a?(Array) ? formatted_nba_data : []
 
     # Filter users to only include a test user
-    test_user = User.find_by(email: 'test@example.com')
+    test_user = User.find_by(email: 'andy.chen@duke.edu')
     users = [test_user]
 
     users.each do |user|
