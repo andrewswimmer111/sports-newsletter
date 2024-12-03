@@ -7,8 +7,6 @@
  
 # railsapp/tmp/cache
  
-.env
- 
 yarn-error.log
 yarn-debug.log*
 .yarn-integrity
