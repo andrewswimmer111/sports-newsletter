@@ -30,7 +30,7 @@ export default function EditUserProfile() {
         else {
             console.log(user.id)
             console.log(formInfo)
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/users/${user.id}`, {
+            const response = await fetch(`http://localhost:3000/users/${user.id}`, {
                 method: 'PATCH',
                 headers: {
                   'Content-Type': 'application/json',
