@@ -3,7 +3,6 @@
 # rails ignore
 **/log
 **/tmp
-**/public
 **/node_modules
  
 # railsapp/tmp/cache
