@@ -1,0 +1,106 @@
+/* Container for the sport card */
+.sport-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    width: 100%;
+    max-width: 92vw;
+    margin: 0 auto;
+    margin-bottom: 3vh;
+    background-color: #2B3035; /* Dark background */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+/* Section Titles */
+.sport-card h2 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #FFF5C1; /* Light text color for visibility */
+}
+  
+/* League Selector Section */
+.league-selector {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-bottom: 20px;
+}
+  
+/* Team List */
+.team-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+  
+/* Submit Button */
+.submit-button {
+    padding: 10px 20px;
+    background-color: #F7E382; /* Yellow button background */
+    color: #212529; /* Dark text color for contrast */
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: #FFF5C1; /* Lighter yellow on hover */
+}
+
+/* Message Display */
+.message {
+    font-size: 18px;
+    color: #28a745; /* Green for success messages (optional) */
+    margin-top: 20px;
+    text-align: center;
+}
+
+@media (min-width: 768px) {
+    /* Adjusting the sport card for larger screens */
+    .sport-card {
+        padding: 40px;
+        max-width: 80vw;
+        margin: 0 auto;
+    }
+
+    /* Adjusting the league selector for wider layout */
+    .league-selector {
+        justify-content: center;
+        gap: 40px;
+    }
+
+    /* Team List using grid */
+    .team-list {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr); /* Four equal columns */
+        gap: 20px; /* Space between items */
+        max-height: 90vh; /* Ensure it fits within 90vh */
+        overflow-y: auto; /* Add scrolling if necessary */
+        width: 100%; /* Ensure the grid takes full width */
+        box-sizing: border-box;
+    }
+
+    /* Individual team items */
+    .team-list .team-checkbox {
+        text-align: center; /* Center-align content for aesthetics */
+        background-color: #F9F9F9; /* Optional: light background */
+        padding: 10px; /* Optional: add padding for visual spacing */
+        border-radius: 4px; /* Optional: rounded corners */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: subtle shadow */
+    }
+
+    /* Submit button styling for web */
+    .submit-button {
+        margin-top: 20px;
+        align-self: center;
+    }
+}
+

@@ -1,0 +1,17 @@
+main {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    padding-bottom: 40px;
+    align-items: center;
+    background-color: #343a40; /* Dark background for the main container */
+    color: #F9F9F9; /* Light text color for contrast */
+    min-height: 90vh;
+}
+
+main h2 {
+    text-align: left;
+    font-size: 24px;
+    margin: 2vh;
+    color: #FFF5C1; /* Light yellow for the heading */
+}

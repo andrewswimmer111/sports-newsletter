@@ -1,0 +1,65 @@
+.league-checkbox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: #f9f9f9;
+    color: black;
+  }
+  
+  .league-checkbox img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 8px;
+    object-fit: contain; /* Ensures the image fits inside the box while maintaining aspect ratio */
+    border-radius: 4px; /* Optional: Adds a bit of rounding to the corners */
+    background-color: #f4f4f4; /* Optional: Adds a background for better presentation */
+  }
+  
+  
+  .league-checkbox.selected {
+    border-color: #007bff;
+    background-color: #e0f7ff;
+  }
+  
+  .league-checkbox:hover {
+    border-color: #007bff;
+  }
+  
+  .league-name {
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+}
+  
+@media (min-width: 768px) {
+    .league-checkbox {
+        width: 150px; /* Increase the size for web */
+        height: 150px; /* Match width for a square layout */
+        border: 3px solid #ccc; /* Thicker border for emphasis */
+        border-radius: 12px; /* Slightly rounder corners */
+        font-size: 16px; /* Slightly larger font for better readability */
+        transition: all 0.3s ease; /* Smooth transition remains */
+    }
+
+    .league-checkbox img {
+        width: 70px; /* Larger image size */
+        height: 70px; /* Match width */
+        margin-bottom: 12px; /* Increase spacing between image and text */
+    }
+
+    .league-checkbox.selected {
+        border-color: #007bff;
+        background-color: #d6f4ff; /* Subtle change for a larger visual area */
+    }
+
+    .league-name {
+        font-size: 16px; /* Adjust font size to match larger checkbox */
+    }
+}

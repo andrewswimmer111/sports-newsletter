@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import { UserContext } from "../components/contexts/UserContext";
+import TeamCheckbox from "./SportCard2/TeamCheckBox";
 
 
 export default function SportCard() {

@@ -1,0 +1,57 @@
+.banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #212529; /* Change this to your desired banner color */
+    color: white;
+    height: 10vh; /* Adjust height as needed */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.banner-logo {
+    font-size: 3rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.banner-buttons {
+    display: flex;
+    gap: 10px; /* Adds space between buttons */
+}
+
+.banner-buttons button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #f7e382; /* Button color */
+    color: black;
+    font-size: 1rem;
+}
+
+.banner-buttons button:hover {
+    background-color: #f7d05f; /* Darker shade for hover */
+}
+
+
+/* Media Query for Web/Desktop */
+@media (min-width: 768px) {
+    .banner {
+        padding: 20px 40px; /* Increase padding for larger screens */
+    }
+
+    .banner-logo {
+        font-size: 4rem; /* Larger font size for the logo */
+    }
+
+    .banner-buttons button {
+        padding: 12px 20px; /* Bigger buttons for desktops */
+        font-size: 1.2rem; /* Larger font size */
+    }
+
+    .banner-buttons {
+        gap: 20px; /* Increase spacing between buttons */
+    }
+}
