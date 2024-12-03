@@ -15,7 +15,7 @@ export default function Profile() {
 
     useEffect(() => {
         if (user) {
-          fetch(`http://localhost:3000/users/${user.id}/get_teams`)
+          fetch(`${process.env.REACT_APP_API_URL}/users/${user.id}/get_teams`)
                 .then(response => response.json())
                 .then(data => setTeams(groupTeamsByLeague(data.teams)))
                 .catch(error => console.error('Error fetching teams:', error));
@@ -36,7 +36,7 @@ export default function Profile() {
 
     const signOut = async () => {
         try {
-            const response = await fetch('http://localhost:3000/users/logout', {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/users/logout`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
