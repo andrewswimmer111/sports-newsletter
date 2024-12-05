@@ -40,15 +40,26 @@ namespace :send_daily_game_results do
 
   def filter_game_data_for_user(user, formatted_data)
     user_teams = user.teams.pluck(:api_id)
-    formatted_data.select do |game|
-      user_teams.include?(game[:team1][:team_id]) || user_teams.include?(game[:team2][:team_id])
+    puts "User #{user.email} follows teams: #{user_teams.inspect}"
+  
+    filtered_data = formatted_data.select do |game|
+      team1_id = game[:team1][:team_id]
+      team2_id = game[:team2][:team_id]
+      puts "Checking game: #{game.inspect}"
+      puts "Team 1 ID: #{team1_id}, Team 2 ID: #{team2_id}"
+  
+      user_teams.include?(team1_id) || user_teams.include?(team2_id)
     end
+  
+    puts "Filtered game data for user #{user.email}: #{filtered_data.inspect}"
+    filtered_data
   end
 
   def build_email_content(user, filtered_data)
-    content = "Hello #{user.name},\n\nHere are the latest game results for your favorite teams:\n\n"
+    content = "Hello #{user.name},\n\nHere's how your favorite teams did last night:\n\n"
     filtered_data.each do |game|
-      content += "#{game[:date]} - #{game[:team1][:team_name]} vs #{game[:team2][:team_name]}\n"
+      formatted_date = Date.parse(game[:date]).strftime('%m/%d')
+      content += "#{formatted_date} - #{game[:team1][:team_name]} vs #{game[:team2][:team_name]}\n"
       content += "Final Score: #{game[:team1][:team_score][:final]} - #{game[:team2][:team_score][:final]}\n\n"
     end
     content
