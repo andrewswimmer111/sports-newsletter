@@ -15,3 +15,6 @@ The frontend & backend of our app are starting to take shape. We have successful
 ## TODO:
 * Use open source API to fetch game data & build emails
 * Finish setting up the automated email newsletter to send emails to users
+
+## Demo:
+https://duke.zoom.us/rec/share/0-aXjcbcnWYDo4IIcm6y8qGUokGHOW3gWlIP0C4ui1Kq48u5XTompZ0LXiDjjuiV.xP1LYF19xZ2fOCnf
