@@ -1,4 +1,4 @@
-##Final Project Report
+# Final Project Report
 
 Over the course of this semester, we created a full stack web application using Ruby on Rails for the backend and React for the frontend. The goal of our web app is to help sports fans keep up with the game results for their favorite teams. Users can login and follow teams from the NBA or the NFL. Once the team is followed, any game results for that team will be added to the weekly email for that user. 
 
