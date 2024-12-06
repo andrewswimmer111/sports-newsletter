@@ -12,7 +12,7 @@ export default function Sports() {
 
     const signOut = async () => {
         try {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/users/logout`, {
+            const response = await fetch('http://localhost:3000/users/logout', {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',

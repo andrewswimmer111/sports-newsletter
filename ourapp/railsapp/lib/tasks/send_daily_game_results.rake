@@ -9,8 +9,8 @@ namespace :send_daily_game_results do
     nfl_data = sports_api_service.fetch_NFL_data(date)
     nba_data = sports_api_service.fetch_NBA_data(date)
 
-    puts "Fetched NFL data: #{nfl_data.inspect}"
-    puts "Fetched NBA data: #{nba_data.inspect}"
+    # puts "Fetched NFL data: #{nfl_data.inspect}"
+    # puts "Fetched NBA data: #{nba_data.inspect}"
 
     nfl_format_service = DataFormatService.new("NFL")
     formatted_nfl_data = nfl_format_service.format_and_cache(nfl_data)
@@ -18,8 +18,8 @@ namespace :send_daily_game_results do
     nba_format_service = DataFormatService.new("NBA")
     formatted_nba_data = nba_format_service.format_and_cache(nba_data)
 
-    puts "Formatted NFL data: #{formatted_nfl_data.inspect}"
-    puts "Formatted NBA data: #{formatted_nba_data.inspect}"
+    # puts "Formatted NFL data: #{formatted_nfl_data.inspect}"
+    # puts "Formatted NBA data: #{formatted_nba_data.inspect}"
 
     # Ensure formatted data is an array
     formatted_nfl_data = formatted_nfl_data.is_a?(Array) ? formatted_nfl_data : []
@@ -40,17 +40,41 @@ namespace :send_daily_game_results do
 
   def filter_game_data_for_user(user, formatted_data)
     user_teams = user.teams.pluck(:api_id)
-    formatted_data.select do |game|
-      user_teams.include?(game[:team1][:team_id]) || user_teams.include?(game[:team2][:team_id])
+    # puts "User #{user.email} follows teams: #{user_teams.inspect}"
+  
+    filtered_data = formatted_data.select do |game|
+      team1_id = game[:team1][:team_id]
+      team2_id = game[:team2][:team_id]
+      # puts "Checking game: #{game.inspect}"
+      # puts "Team 1 ID: #{team1_id}, Team 2 ID: #{team2_id}"
+  
+      user_teams.include?(team1_id) || user_teams.include?(team2_id)
     end
+  
+    # puts "Filtered game data for user #{user.email}: #{filtered_data.inspect}"
+    filtered_data
   end
 
   def build_email_content(user, filtered_data)
-    content = "Hello #{user.name},\n\nHere are the latest game results for your favorite teams:\n\n"
+    date = filtered_data.any? ? Date.parse(filtered_data.first[:date]).strftime('%m/%d') : ''
+  
+    content = "<p>Hello #{user.name},</p>"
+    content += "<p>Here's how your favorite teams did last night (#{date}):</p>"
+  
     filtered_data.each do |game|
-      content += "#{game[:date]} - #{game[:team1][:team_name]} vs #{game[:team2][:team_name]}\n"
-      content += "Final Score: #{game[:team1][:team_score][:final]} - #{game[:team2][:team_score][:final]}\n\n"
+      team1_name = game[:team1][:team_name]
+      team2_name = game[:team2][:team_name]
+      team1_score = game[:team1][:team_score][:final]
+      team2_score = game[:team2][:team_score][:final]
+  
+      if team1_score > team2_score
+        content += "<p>The #{team1_name} beat the #{team2_name} #{team1_score} - #{team2_score}</p>"
+      else
+        content += "<p>The #{team2_name} beat the #{team1_name} #{team2_score} - #{team1_score}</p>"
+      end
     end
+  
     content
   end
+
 end

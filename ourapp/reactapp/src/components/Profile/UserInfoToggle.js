@@ -18,7 +18,7 @@ export default function UserInfoToggle() {
         }
 
         try {
-          const response = await fetch(`${process.env.REACT_APP_API_URL}/users/${user.id}`, {
+          const response = await fetch(`http://localhost:3000/users/${user.id}`, {
             method: 'DELETE',
             headers: {
               'Content-Type': 'application/json',
@@ -108,7 +108,7 @@ function EditUserProfile() {
         } else {
             console.log(JSON.stringify(formInfo))
             try {
-                const response = await fetch(`${process.env.REACT_APP_API_URL}/users/${user.id}`, {
+                const response = await fetch(`http://localhost:3000/users/${user.id}`, {
                     method: 'PATCH',
                     headers: {
                         'Content-Type': 'application/json',

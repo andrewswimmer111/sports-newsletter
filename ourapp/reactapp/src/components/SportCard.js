@@ -14,7 +14,7 @@ export default function SportCard() {
 
     useEffect(() => {
         // Fetch teams based on the selected league
-        fetch(`${process.env.REACT_APP_API_URL}/api/teams?league=${selectedLeague}`)
+        fetch(`http://localhost:3000/api/teams?league=${selectedLeague}`)
             .then(response => response.json())
             .then(data => setTeams(data))
             .catch(error => console.error("Error fetching teams:", error));
@@ -34,7 +34,7 @@ export default function SportCard() {
     };
 
     const handleTeamSubmit = async(e) => {
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/user_teams`, {
+        const response = await fetch('http://localhost:3000/user_teams', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',

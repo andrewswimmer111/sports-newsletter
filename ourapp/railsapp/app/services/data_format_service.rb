@@ -25,16 +25,16 @@ class DataFormatService
 
     data['response'].map do |game_data|
       api_hometeam_id = game_data['teams']['home']['id']
-      ourapp_hometeam_id = Team.where(api_id: api_hometeam_id, league: "NFL").first
+      ourapp_hometeam = Team.where(api_id: api_hometeam_id, league: "NFL").first
 
       api_awayteam_id = game_data['teams']['away']['id']
-      ourapp_awayteam_id = Team.where(api_id: api_awayteam_id, league: "NFL").first
+      ourapp_awayteam = Team.where(api_id: api_awayteam_id, league: "NFL").first
 
       match_data = {
         league: @league,
         date: game_data['game']['date']['date'], # example format "2022-09-30"
         team1: {
-          team_id: ourapp_hometeam_id,
+          team_id: ourapp_hometeam&.api_id,
           team_name: game_data['teams']['home']['name'],
           team_score: {
             q1: game_data['scores']['home']['quarter_1'],
@@ -45,7 +45,7 @@ class DataFormatService
           }
         },
         team2: {
-          team_id: ourapp_awayteam_id,
+          team_id: ourapp_awayteam&.api_id,
           team_name: game_data['teams']['away']['name'],
           team_score: {
             q1: game_data['scores']['away']['quarter_1'],
@@ -66,16 +66,16 @@ class DataFormatService
 
     data['response'].map do |game_data|
       api_hometeam_id = game_data['teams']['home']['id']
-      ourapp_hometeam_id = Team.where(api_id: api_hometeam_id, league: "NBA").first
+      ourapp_hometeam = Team.where(api_id: api_hometeam_id, league: "NBA").first
 
       api_awayteam_id = game_data['teams']['visitors']['id']
-      ourapp_awayteam_id = Team.where(api_id: api_awayteam_id, league: "NBA").first
+      ourapp_awayteam = Team.where(api_id: api_awayteam_id, league: "NBA").first
 
       match_data = {
         league: @league,
         date: game_data['date']['start'], # example format "2022-03-09T00:00:00.000Z"
         team1: {
-          team_id: ourapp_hometeam_id,
+          team_id: ourapp_hometeam&.api_id,
           team_name: game_data['teams']['home']['name'],
           team_score: {
             q1: game_data['scores']['home']['linescore'][0],
@@ -86,7 +86,7 @@ class DataFormatService
           }
         },
         team2: {
-          team_id: ourapp_awayteam_id,
+          team_id: ourapp_awayteam&.api_id,
           team_name: game_data['teams']['visitors']['name'],
           team_score: {
             q1: game_data['scores']['visitors']['linescore'][0],
