@@ -3,9 +3,36 @@
 <html>
   <head>
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+      }
+      .header {
+        background-color: #f8f9fa;
+        padding: 10px;
+        text-align: center;
+      }
+      .content {
+        padding: 20px;
+      }
+      .game {
+        margin-bottom: 20px;
+      }
+      .game-date {
+        font-weight: bold;
+      }
+      .final-score {
+        color: #007bff;
+      }
+    </style>
   </head>
   <body>
-    <h1> Custom Sports Newsletter </h1>
-    <p><%= @content %></p>
+    <div class="header">
+      <h1>Custom Sports Newsletter</h1>
+    </div>
+    <div class="content">
+      <%= @content.html_safe %>
+    </div>
   </body>
 </html>
