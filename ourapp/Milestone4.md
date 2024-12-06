@@ -1,4 +1,4 @@
-# Milestone 3
+# Milestone 4
 
 ## Basic Functionality
 The frontend & backend of our app are starting to take shape. We have successfully implemented user sign-in and sign-up, user authentication, and sessions. In addition, the following CRUD actions are now functional: 
