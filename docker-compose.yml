@@ -41,7 +41,9 @@ services:
       RAILS_MAX_THREADS: 5
   
   sidekiq:
-    image: ourapp-backend
+    build:
+      context: ./railsapp
+      dockerfile: Dockerfile
     command: bundle exec sidekiq
     volumes:
       - ./railsapp:/app

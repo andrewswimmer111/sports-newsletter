@@ -39,6 +39,7 @@ export default function Sports() {
             </Banner2>
             <main>
                 <h2>Welcome back, {user.name.split(' ')[0]}.</h2>
+                <h4> Note: Email functionality is currently disabled as the site does not have access to an SMTP server.</h4>
                 <SportCard2></SportCard2>
             </main>
         </>
