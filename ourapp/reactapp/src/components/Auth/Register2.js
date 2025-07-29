@@ -17,7 +17,7 @@ export default function Register2() {
     e.preventDefault();
     try {
       console.log(JSON.stringify({ name: firstName + ' ' + lastName, email, password }))
-      const response = await fetch('http://localhost:3000/users/register', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/users/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 

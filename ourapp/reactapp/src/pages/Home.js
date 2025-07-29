@@ -24,8 +24,8 @@ export default function Home() {
   return (
     <main className="layout-container">
       <div className="intro-section">
-        <Banner/>
-        <SportCard/>
+        {/* <Banner/>
+        <SportCard/> */}
       </div>
     </main>
   );

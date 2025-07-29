@@ -27,7 +27,7 @@ export const UserProvider = ({ children }) => {
     const fetchCurrentUser = async () => {
       if (!user) {
         try {
-          const response = await fetch('http://localhost:3000/users/current_user', {
+          const response = await fetch(`${process.env.REACT_APP_API_URL}/users/current_user`, {
             method: 'GET',
             credentials: 'include', // Include cookies in the request
           });
