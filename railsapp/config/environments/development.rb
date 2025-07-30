@@ -2,7 +2,7 @@ require "active_support/core_ext/integer/time"
 require 'logger'
 
 Rails.application.configure do
-  config.hosts << "vcm-44519.vm.duke.edu"
+  config.hosts << "vcm-48060.vm.duke.edu"
 
   logger = Logger.new($stdout)
   # Settings specified here will take precedence over those in config/application.rb.

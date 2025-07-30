@@ -1,0 +1,12 @@
+# rails ignore
+**/log
+**/tmp
+**/node_modules
+ 
+# railsapp/tmp/cache
+ 
+yarn-error.log
+yarn-debug.log*
+.yarn-integrity
+
+.env
