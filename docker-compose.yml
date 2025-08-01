@@ -56,11 +56,13 @@ services:
       - DATABASE_PASSWORD=password
   redis:
     image: redis:latest
-    command: redis-server --save 60 50 --loglevel warning
+    command: sh -c "redis-server --requirepass $$REDIS_PASSWORD --save 60 50 --loglevel warning"
     volumes: 
       - redis_data:/data
     ports:
       - '6379:6379'
+    environment:
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
 volumes:
   exclude:
   postgres:
